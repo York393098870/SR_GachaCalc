@@ -15,7 +15,7 @@ namespace SR_GachaCalc
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Hello World!");
+            Program.CalculateGacha();
         }
     }
 }
