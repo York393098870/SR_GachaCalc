@@ -1,10 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace SR_GachaCalc
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         public MainWindow()
@@ -14,7 +12,7 @@ namespace SR_GachaCalc
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Program.CalculateGacha();
+            Console.WriteLine(GachaCalculate.get_succeed_probability(0));
         }
     }
 }
