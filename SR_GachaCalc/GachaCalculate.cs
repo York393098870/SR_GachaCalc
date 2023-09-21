@@ -2,13 +2,16 @@
 
 namespace SR_GachaCalc;
 
-public class GachaCalculate
+public static class GachaCalculate
 {
-    private static int total_gacha_times; //定义总抽卡次数
+    //从上一次出金至下一次出金之间定义为一个循环
+
     private static Random _random = new Random();
+    private static bool _isLastResultSuccess = true; //判断是否存在大保底，若结果为True则无大保底
+    private static double _getlimitedrate = 0.5; //定义获得限定的概率
 
     //传入单次五星循环内抽卡的次数，获取单抽的概率
-    public static decimal get_succeed_probability(int singleGachaTimes)
+    private static decimal get_succeed_probability(int singleGachaTimes)
     {
         decimal pValue;
         switch (singleGachaTimes)
@@ -38,22 +41,45 @@ public class GachaCalculate
         }
     }
 
-    public static bool get_single_result(decimal probability)
+    private static bool get_single_result(decimal probability)
     {
         return _random.NextDouble() < (double)probability;
     }
 
-    public static int gacha(int times)
+    public static (int, int) Gacha(int times)
     {
-        total_gacha_times = times;
-        int success_times = 0;
-        var n = 1; //n为出金循环内抽卡次数
+        var limitedFiveStarCount = 0;
+        var normalFiveStarCount = 0;
+        var n = 1; //n为一个循环内的抽卡次数
         for (var i = 1; i <= times; i++) //i为总抽卡次数
+
         {
+            //判断是否出金
             if (get_single_result(get_succeed_probability(n)))
             {
-                success_times++;
-                n = 1; //重置出金循环n次数
+                //判断大保底的情况
+                if (_isLastResultSuccess)
+                {
+                    //没有大保底
+                    if (_random.NextDouble() < 1 - _getlimitedrate) //判断是否歪常驻
+                    {
+                        //歪常驻，为下一次添加大保底
+                        normalFiveStarCount++;
+                        _isLastResultSuccess = false; //下一次默认为大保底
+                    }
+                    else
+                    {
+                        //没有歪常驻的情况，保底情况不做改动
+                        limitedFiveStarCount++;
+                    }
+                }
+                else
+                {
+                    limitedFiveStarCount++;
+                    _isLastResultSuccess = true; //清空保底
+                }
+
+                n = 1; //开始新一轮循环
             }
             else
             {
@@ -61,6 +87,6 @@ public class GachaCalculate
             }
         }
 
-        return success_times;
+        return (limitedFiveStarCount, normalFiveStarCount);
     }
 }

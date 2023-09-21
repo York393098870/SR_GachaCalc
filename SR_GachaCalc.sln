@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SR_GachaCalc", "SR_GachaCalc\SR_GachaCalc.csproj", "{3073FA62-E8AA-427B-9513-8CDE7F7CB19D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GachaCalculate", "GachaCalculate\GachaCalculate.csproj", "{4DEFED3C-5D60-44FA-84C2-CAD01152B4F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{3073FA62-E8AA-427B-9513-8CDE7F7CB19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3073FA62-E8AA-427B-9513-8CDE7F7CB19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3073FA62-E8AA-427B-9513-8CDE7F7CB19D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEFED3C-5D60-44FA-84C2-CAD01152B4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEFED3C-5D60-44FA-84C2-CAD01152B4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEFED3C-5D60-44FA-84C2-CAD01152B4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEFED3C-5D60-44FA-84C2-CAD01152B4F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
