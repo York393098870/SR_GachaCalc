@@ -12,7 +12,7 @@ namespace SR_GachaCalc
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            const int times = 844;
+            const int times = 1000000;
             var gachaResult = GachaCalculate.Gacha(times);
             var averagelimitedcount = Math.Round((double)times / gachaResult.Item1, 2);
             var averagetotalcount = Math.Round((double)times / (gachaResult.Item1 + gachaResult.Item2), 2);
