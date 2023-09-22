@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SR_GachaCalc;
+﻿namespace CoreLibraries;
 
 public static class GachaCalculate
 {
