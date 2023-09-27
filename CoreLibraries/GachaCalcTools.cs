@@ -12,7 +12,7 @@ public static class GachaCalcTools
     private static bool _hasPityofWeapon = false;
 
     //角色Up池的抽奖概率计算
-    public static double getSucceedProbabilityofRole(int singleGachaTimes) //判断单次抽卡循环内，单次抽奖成功的概率p
+    public static double GetSucceedProbabilityOfRole(int singleGachaTimes) //判断单次抽卡循环内，单次抽奖成功的概率p
     {
         double pValue;
         switch (singleGachaTimes)
@@ -44,7 +44,7 @@ public static class GachaCalcTools
     }
 
     //武器Up池的抽奖计算
-    public static double getSucceedProbabilityofWeapon(int singleGachaTimes)
+    public static double GetSucceedProbabilityOfWeapon(int singleGachaTimes)
     {
         double pValue;
         switch (singleGachaTimes)
@@ -83,7 +83,7 @@ public static class GachaCalcTools
     }
 
 
-    public static (double, double) getLimitedRate()
+    public static (double, double) GetLimitedRate()
     {
         return (_getLimitedRoleRate, _getLimitedWeaponRate);
     }

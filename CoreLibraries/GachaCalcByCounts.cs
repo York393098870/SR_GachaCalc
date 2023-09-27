@@ -30,7 +30,7 @@ public static class GachaCalcByCounts
             //先完成一次抽卡
             gachaTimesOfRole++;
 
-            if (get_single_result(GachaCalcTools.getSucceedProbabilityofRole(m)))
+            if (get_single_result(GachaCalcTools.GetSucceedProbabilityOfRole(m)))
             {
                 //抽到五星时的情况
                 m = 1; //只要获得五星，直接重置循环
@@ -44,7 +44,7 @@ public static class GachaCalcByCounts
                 else
                 {
                     //无大保底时的逻辑
-                    if (get_single_result(GachaCalcTools.getLimitedRate().Item1))
+                    if (get_single_result(GachaCalcTools.GetLimitedRate().Item1))
                     {
                         //出限定的情况
                         i++;
@@ -71,7 +71,7 @@ public static class GachaCalcByCounts
             //先完成一次抽卡
             gachaTimesOfWeapon++;
 
-            if (get_single_result(GachaCalcTools.getSucceedProbabilityofWeapon(n)))
+            if (get_single_result(GachaCalcTools.GetSucceedProbabilityOfWeapon(n)))
             {
                 //抽到五星时的情况
                 n = 1; //只要获得五星，直接重置循环
@@ -85,7 +85,7 @@ public static class GachaCalcByCounts
                 else
                 {
                     //无大保底时的逻辑
-                    if (get_single_result(GachaCalcTools.getLimitedRate().Item1))
+                    if (get_single_result(GachaCalcTools.GetLimitedRate().Item1))
                     {
                         //出限定的情况
                         i++;

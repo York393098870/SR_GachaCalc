@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLibraries", "CoreLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLIApplication", "CLIApplication\CLIApplication.csproj", "{A2C1A3F4-1D0C-44F3-8936-DDC7195BD9B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication", "AvaloniaApplication\AvaloniaApplication.csproj", "{AB31F1F0-D14E-48D1-A359-82D8B66BF952}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{A2C1A3F4-1D0C-44F3-8936-DDC7195BD9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2C1A3F4-1D0C-44F3-8936-DDC7195BD9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2C1A3F4-1D0C-44F3-8936-DDC7195BD9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB31F1F0-D14E-48D1-A359-82D8B66BF952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB31F1F0-D14E-48D1-A359-82D8B66BF952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB31F1F0-D14E-48D1-A359-82D8B66BF952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB31F1F0-D14E-48D1-A359-82D8B66BF952}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

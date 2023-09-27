@@ -17,19 +17,20 @@ public static class GachaCalcByTimes
         return _random.NextDouble() < probability;
     }
 
-    public static (int, int) Gacha(int times, string kindOfFiveStar)
+    public static (int, int) GachaByTimes(int times, string kindOfFiveStar)
     {
+        //传入抽数，卡池类型，获取抽卡结果
         Func<int, double> getProbability;
         double getLimitedRate;
         switch (kindOfFiveStar)
         {
             case "role":
-                getProbability = GachaCalcTools.getSucceedProbabilityofRole;
+                getProbability = GachaCalcTools.GetSucceedProbabilityOfRole;
                 getLimitedRate = GetLimitedRoleRate;
                 break;
 
             case "weapon":
-                getProbability = GachaCalcTools.getSucceedProbabilityofWeapon;
+                getProbability = GachaCalcTools.GetSucceedProbabilityOfWeapon;
                 getLimitedRate = GetLimitedWeaponRate;
                 break;
 
