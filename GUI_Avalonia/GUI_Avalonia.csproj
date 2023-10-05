@@ -10,6 +10,7 @@
         <RepositoryUrl>https://github.com/York393098870/SR_GachaCalc</RepositoryUrl>
         <RepositoryType>Public</RepositoryType>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <RootNamespace>AvaloniaApplication</RootNamespace>
     </PropertyGroup>
 
 

@@ -4,7 +4,7 @@ public static class GachaCalcApi
 {
     //本类用于提供API供GUI调用
     public static (int, int, string) GachaInPoolByTimes(int tryRoleTimes, int typeCode)
-    //给定卡池类型和抽数，返回抽卡结果
+        //给定卡池类型和抽数，返回抽卡结果
     {
         string poolType;
         string thingType;
@@ -36,7 +36,7 @@ public static class GachaCalcApi
         var averagelimitedcount = Math.Round((double)tryRoleTimes / gachaResult.Item1, 1);
         //返回消息
         var resultMessage =
-            $"模拟{thingType}池抽卡{tryRoleTimes}次的情况。累计获得{gachaResult.Item1}{quantifier}限定{thingType}，平均获得{gachaResult.Item2}{quantifier}限定{thingType}，平均每{averagelimitedcount}抽获得1{quantifier}限定{thingType}。";
+            $"模拟{thingType}池抽卡{tryRoleTimes}次的情况：累计获得{gachaResult.Item1}{quantifier}限定{thingType}，{gachaResult.Item2}{quantifier}常驻{thingType}，平均每{averagelimitedcount}抽获得1{quantifier}限定{thingType}。";
         return (gachaResult.Item1, gachaResult.Item2, resultMessage);
     }
 }
