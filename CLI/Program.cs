@@ -1,6 +1,6 @@
 ﻿using CoreLibraries;
 
-const bool debugMode = true; //生产环境下请设置为FALSE
+const bool debugMode = false; //生产环境下请设置为FALSE
 
 //主要用于测试
 Console.WriteLine("请选择计算模式：（1,2,3,4,5）");
@@ -19,7 +19,7 @@ switch (calculateMode)
         Console.Write("请输入你抽取的限定光锥数量：");
         var targetNumberOfWeapon = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
-        const int simulations = 100000;
+        const int simulations = 1000000;
 
         Console.Write("请输入你花费的抽数：");
         var playerATries = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());

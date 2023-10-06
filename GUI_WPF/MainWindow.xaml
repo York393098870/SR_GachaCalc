@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="崩坏：星穹铁道抽卡工具箱 V0.2.0测试版" Height="350" Width="500"
+        Title="崩坏：星穹铁道抽卡工具箱 V0.2.0测试版" Height="250" Width="500"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -37,18 +37,18 @@
                     <TextBlock Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center">模拟指定Up池抽卡：</TextBlock>
 
                     <RadioButton Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                 HorizontalAlignment="Center" Name="CharacterPool">
+                                 HorizontalAlignment="Center">
                         Up角色池
                     </RadioButton>
                     <RadioButton Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                 HorizontalAlignment="Center" Name="WeaponPool">
+                                 HorizontalAlignment="Center">
                         Up光锥池
                     </RadioButton>
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center"
                                HorizontalAlignment="Center">
                         模拟投入角色Up池的抽数：
                     </TextBlock>
-                    <TextBox Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Name="CharacterInput"
+                    <TextBox Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2"
                              IsEnabled="{Binding Path=IsChecked,ElementName=CharacterPool}">
                     </TextBox>
                     <Button Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left"
@@ -61,7 +61,7 @@
                                HorizontalAlignment="Center">
                         模拟投入光锥Up池的抽数：
                     </TextBlock>
-                    <TextBox Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Name="WeaponInput"
+                    <TextBox Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2"
                              IsEnabled="{Binding Path=IsChecked,ElementName=WeaponPool}">
                     </TextBox>
                     <Button Grid.Row="5" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left"
@@ -69,15 +69,67 @@
                             IsEnabled="{Binding Path=IsChecked,ElementName=WeaponPool}">
                         开始模拟计算
                     </Button>
-                    <Button Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="访问项目开源地址" Name="OpenWebsite" Click="OpenWebsite_OnClick"></Button>
+                    <Button Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="访问项目开源地址"
+                            Click="OpenWebsite_OnClick">
+                    </Button>
 
                 </Grid>
             </TabItem>
             <TabItem Header="欧非计算器">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="15"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        请输入获得的Up角色、Up光锥数量、消耗抽数后点击欧非计算按钮
+                    </TextBlock>
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        模拟投入角色Up池的抽数：
+                    </TextBlock>
+                    <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Name="CharacterInput">
+                    </TextBox>
+
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        模拟投入光锥Up池的抽数：
+                    </TextBlock>
+                    <TextBox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Name="WeaponInput">
+                    </TextBox>
+
+                    <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="访问项目开源地址" Name="OpenWebsite"
+                            Click="OpenWebsite_OnClick">
+                    </Button>
+
+                </Grid>
 
             </TabItem>
             <TabItem Header="抽卡分布图形生成">
-                
+
             </TabItem>
         </TabControl>
     </Grid>

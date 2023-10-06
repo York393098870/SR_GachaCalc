@@ -85,7 +85,7 @@ public static class GachaCalcByCounts
                 else
                 {
                     //无大保底时的逻辑
-                    if (get_single_result(GachaCalcTools.GetLimitedRate().Item1))
+                    if (get_single_result(GachaCalcTools.GetLimitedRate().Item2))
                     {
                         //出限定的情况
                         i++;
