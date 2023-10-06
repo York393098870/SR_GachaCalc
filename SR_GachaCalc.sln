@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI_Avalonia", "GUI_Avaloni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI_WPF", "GUI_WPF\GUI_WPF.csproj", "{9C1D160F-548B-42CB-885E-32E024364862}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnit", "TestUnit\TestUnit.csproj", "{7316CE04-35C3-4B39-B943-08187E83C95B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{9C1D160F-548B-42CB-885E-32E024364862}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C1D160F-548B-42CB-885E-32E024364862}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C1D160F-548B-42CB-885E-32E024364862}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7316CE04-35C3-4B39-B943-08187E83C95B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7316CE04-35C3-4B39-B943-08187E83C95B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7316CE04-35C3-4B39-B943-08187E83C95B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7316CE04-35C3-4B39-B943-08187E83C95B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
