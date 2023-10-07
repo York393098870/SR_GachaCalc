@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="崩坏：星穹铁道抽卡工具箱 V0.2.0测试版" Height="250" Width="500"
+        Title="崩坏：星穹铁道抽卡工具箱 V0.2.0测试版" Height="300" Width="500"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -48,8 +48,9 @@
                                HorizontalAlignment="Center">
                         模拟投入角色Up池的抽数：
                     </TextBlock>
-                    <TextBox Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2"
-                             IsEnabled="{Binding Path=IsChecked,ElementName=CharacterPool}">
+                    <TextBox Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Name="CharacterInput"
+                             IsEnabled="{Binding Path=IsChecked,ElementName=CharacterPool}"
+                             TextChanged="AllowOnlyNumbers">
                     </TextBox>
                     <Button Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                             Click="GachaInCharacterPole_OnClick"
@@ -61,8 +62,8 @@
                                HorizontalAlignment="Center">
                         模拟投入光锥Up池的抽数：
                     </TextBlock>
-                    <TextBox Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2"
-                             IsEnabled="{Binding Path=IsChecked,ElementName=WeaponPool}">
+                    <TextBox Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Name="WeaponInput"
+                             IsEnabled="{Binding Path=IsChecked,ElementName=WeaponPool}" TextChanged="AllowOnlyNumbers">
                     </TextBox>
                     <Button Grid.Row="5" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                             Click="GachaInWeaponPole_OnClick"
@@ -93,10 +94,13 @@
                         <RowDefinition Height="20"></RowDefinition>
                         <RowDefinition Height="20"></RowDefinition>
                         <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="15"></RowDefinition>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="30"></RowDefinition>
-                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
 
                     </Grid.RowDefinitions>
 
@@ -108,22 +112,40 @@
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
                                HorizontalAlignment="Center">
-                        模拟投入角色Up池的抽数：
+                        总计获取的限定Up角色数：
                     </TextBlock>
-                    <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Name="CharacterInput">
+                    <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Name="NumberOfLimitedCharacters"
+                             TextChanged="AllowOnlyNumbers">
                     </TextBox>
 
 
                     <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
                                HorizontalAlignment="Center">
-                        模拟投入光锥Up池的抽数：
+                        总计获取的限定Up光锥数：
                     </TextBlock>
-                    <TextBox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Name="WeaponInput">
+                    <TextBox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Name="NumberOfLimitedWeapons"
+                             TextChanged="AllowOnlyNumbers">
                     </TextBox>
 
-                    <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="访问项目开源地址" Name="OpenWebsite"
-                            Click="OpenWebsite_OnClick">
+                    <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        总计花费的抽数：
+                    </TextBlock>
+                    <TextBox Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Name="TotalGachaTimes"
+                             TextChanged="AllowOnlyNumbers">
+                    </TextBox>
+
+                    <Button Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                            Click="CalculateLuckyValue" Name="CalculateValueOfLucky">
+                        进行欧非计算
                     </Button>
+
+                    <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="2"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Name="ResultOfLuckyValue" TextWrapping="Wrap">
+                        尚未开始欧非计算
+                    </TextBlock>
+
 
                 </Grid>
 

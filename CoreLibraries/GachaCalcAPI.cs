@@ -39,4 +39,39 @@ public static class GachaCalcApi
             $"模拟{thingType}池抽卡{tryRoleTimes}次的情况：累计获得{gachaResult.Item1}{quantifier}限定{thingType}，{gachaResult.Item2}{quantifier}常驻{thingType}，平均每{averagelimitedcount}抽获得1{quantifier}限定{thingType}。";
         return (gachaResult.Item1, gachaResult.Item2, resultMessage);
     }
+
+    public static (double, double) GachaLuckyValueCalculate(int characterCount, int weaponCount, int totalGachaTimes,
+            int accuracyControl = 2)
+        //给定限定角色/武器数量和总抽数，计算幸运值
+    {
+        int simulations;
+        _ = accuracyControl switch
+        {
+            1 => simulations = 100000,
+            2 => simulations = 1000000,
+            3 => simulations = 10000000,
+            _ => simulations = 100000
+        };
+
+        var allTries = new List<int>();
+
+        for (var i = 1; i <= simulations; i++)
+        {
+            var gachaResult = GachaCalcByCounts.GachaCalc(characterCount, weaponCount);
+            allTries.Add(gachaResult.gachaTimesOfRole + gachaResult.gachaTimesOfWeapon);
+        }
+
+        allTries.Sort();
+
+        // 找出玩家幸运值的位置
+        var rank = allTries.Count(x => x < totalGachaTimes);
+
+        // 计算百分比
+        var percentile = (double)rank / simulations * 100;
+
+        // 计算超越了多少玩家
+        var surpassed = 100 - percentile;
+
+        return (percentile, surpassed);
+    }
 }

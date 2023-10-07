@@ -3,23 +3,46 @@
 //抽卡计算所用的工具类
 public static class GachaCalcTools
 {
-    //定义不歪常驻的概率
-    private static double _getLimitedRoleRate = 0.5;
-    private static double _getLimitedWeaponRate = 0.75;
+    //预计算处理
+    private static readonly double[] PrecalculatedProbabilitiesOfCharacter = new double[91];
+    private static readonly double[] PrecalculatedProbabilitiesOfWeapon = new double[81];
 
-    //保底逻辑的存储
-    private static bool _hasPityofRole = false;
-    private static bool _hasPityofWeapon = false;
+    static GachaCalcTools()
+    {
+        //预计算角色池和光锥池的概率
+        for (var i = 1; i <= 90; i++)
+        {
+            PrecalculatedProbabilitiesOfCharacter[i] = CalculateSucceedProbabilityOfCharacter(i);
+        }
+
+        for (var i = 1; i < 80; i++)
+        {
+            PrecalculatedProbabilitiesOfWeapon[i] = CalculateSucceedProbabilityOfWeapon(i);
+        }
+    }
+
+    //获取预计算的概率
+
+    public static double GetSucceedProbabilityOfCharacter(int singleGachaTimes)
+    {
+        return PrecalculatedProbabilitiesOfCharacter[singleGachaTimes];
+    }
+
+    public static double GetSucceedProbabilityOfWeapon(int singleGachaTimes)
+    {
+        return PrecalculatedProbabilitiesOfWeapon[singleGachaTimes];
+    }
+
 
     //角色Up池的抽奖概率计算
-    public static double GetSucceedProbabilityOfRole(int singleGachaTimes) //判断单次抽卡循环内，单次抽奖成功的概率p
+    private static double CalculateSucceedProbabilityOfCharacter(int singleGachaTimes) //计算单次抽卡循环内，单次抽奖成功的概率p
     {
         double pValue;
         switch (singleGachaTimes)
         {
             //判断已抽卡次数小于0的情况，并返回错误代码
             case < 1:
-                Console.WriteLine("Invalid number in put for single circle calculate.");
+                Console.WriteLine("CharacterError:Invalid number '1' in put for single circle calculate.");
                 Environment.Exit(1); //返回错误代码1，单次循环内输入不允许小于1
                 return -1;
 
@@ -35,23 +58,24 @@ public static class GachaCalcTools
             case 90:
                 pValue = 1;
                 return pValue;
-            
+
             default:
-                Console.WriteLine("Invalid number in put for single circle calculate.");
+                Console.WriteLine(
+                    $"CharacterError:Invalid number {singleGachaTimes} in put for single circle calculate.");
                 Environment.Exit(1); //返回错误代码1，单次循环内不允许的输入
                 return -1d;
         }
     }
 
     //武器Up池的抽奖计算
-    public static double GetSucceedProbabilityOfWeapon(int singleGachaTimes)
+    private static double CalculateSucceedProbabilityOfWeapon(int singleGachaTimes)
     {
         double pValue;
         switch (singleGachaTimes)
         {
             //判断已抽卡次数小于0的情况，并返回错误代码
             case < 1:
-                Console.WriteLine("Invalid number in put for single circle calculate.");
+                Console.WriteLine("WeaponError:Invalid number '1' in put for single circle calculate.");
                 Environment.Exit(1); //返回错误代码1，单次循环内输入不允许小于1
                 return -1;
 
@@ -74,17 +98,11 @@ public static class GachaCalcTools
             case 80:
                 pValue = 1d;
                 return pValue;
-            
+
             default:
-                Console.WriteLine("Invalid number in put for single circle calculate.");
+                Console.WriteLine("WeaponError:Invalid number in put for single circle calculate.");
                 Environment.Exit(1); //返回错误代码1，单次循环内不允许的输入
                 return -1d;
         }
-    }
-
-
-    public static (double, double) GetLimitedRate()
-    {
-        return (_getLimitedRoleRate, _getLimitedWeaponRate);
     }
 }
