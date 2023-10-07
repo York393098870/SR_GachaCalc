@@ -67,7 +67,7 @@ namespace GUI_WPF
                     var result = await Task.Run(() => GachaCalcApi.GachaLuckyValueCalculate(characterCount, weaponCount,
                         totalGachaTimes));
                     var stringResult =
-                        $"你总共花费{totalGachaTimes}抽，获得{characterCount}只限定角色，{weaponCount}把限定武器，在模拟大量玩家抽卡的情况下，你的运气超越了{result.Item2:F3}%的玩家。";
+                        $"你总共花费{totalGachaTimes}抽，获得{characterCount}只限定角色，{weaponCount}把限定武器，在模拟大量玩家抽卡的情况下，你的运气超越了{result.Item2:F3}%的玩家。（计算用时：{result.Item3}秒）";
                     ResultOfLuckyValue.Text = stringResult;
                 }
             }
@@ -77,6 +77,7 @@ namespace GUI_WPF
             }
             finally
             {
+                await Task.Delay(1000);
                 // 重新启用按钮
                 CalculateValueOfLucky.IsEnabled = true;
             }

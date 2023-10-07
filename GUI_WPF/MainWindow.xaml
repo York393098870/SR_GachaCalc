@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="崩坏：星穹铁道抽卡工具箱 V0.2.0测试版" Height="300" Width="500"
+        Title="崩坏：星穹铁道抽卡工具箱 V0.2.1测试版" Height="300" Width="500"
         WindowStartupLocation="CenterScreen">
 
     <Grid>

@@ -1,4 +1,7 @@
-﻿namespace CoreLibraries;
+﻿using System.Collections.Concurrent;
+using System.Diagnostics;
+
+namespace CoreLibraries;
 
 public static class GachaCalcApi
 {
@@ -40,7 +43,8 @@ public static class GachaCalcApi
         return (gachaResult.Item1, gachaResult.Item2, resultMessage);
     }
 
-    public static (double, double) GachaLuckyValueCalculate(int characterCount, int weaponCount, int totalGachaTimes,
+    public static (double, double, double) GachaLuckyValueCalculate(int characterCount, int weaponCount,
+            int totalGachaTimes,
             int accuracyControl = 2)
         //给定限定角色/武器数量和总抽数，计算幸运值
     {
@@ -53,18 +57,19 @@ public static class GachaCalcApi
             _ => simulations = 100000
         };
 
-        var allTries = new List<int>();
+        var allTries = new ConcurrentBag<int>();
 
-        for (var i = 1; i <= simulations; i++)
+        var stopwatch = Stopwatch.StartNew(); //开始计时
+        Parallel.For(0, simulations, i =>
         {
             var gachaResult = GachaCalcByCounts.GachaCalc(characterCount, weaponCount);
             allTries.Add(gachaResult.gachaTimesOfRole + gachaResult.gachaTimesOfWeapon);
-        }
+        });
 
-        allTries.Sort();
+        var sortedTries = allTries.OrderBy(x => x).ToList();
 
         // 找出玩家幸运值的位置
-        var rank = allTries.Count(x => x < totalGachaTimes);
+        var rank = sortedTries.Count(x => x < totalGachaTimes);
 
         // 计算百分比
         var percentile = (double)rank / simulations * 100;
@@ -72,6 +77,10 @@ public static class GachaCalcApi
         // 计算超越了多少玩家
         var surpassed = 100 - percentile;
 
-        return (percentile, surpassed);
+        stopwatch.Stop();
+
+        var timeUsed = Math.Round(stopwatch.ElapsedMilliseconds / 1000d, 2);
+
+        return (percentile, surpassed, timeUsed);
     }
 }
