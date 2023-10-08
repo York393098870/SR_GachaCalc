@@ -15,7 +15,7 @@ public static class GachaCalcTools
             PrecalculatedProbabilitiesOfCharacter[i] = CalculateSucceedProbabilityOfCharacter(i);
         }
 
-        for (var i = 1; i < 80; i++)
+        for (var i = 1; i <= 80; i++)
         {
             PrecalculatedProbabilitiesOfWeapon[i] = CalculateSucceedProbabilityOfWeapon(i);
         }
