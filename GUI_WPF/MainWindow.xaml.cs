@@ -10,9 +10,25 @@ namespace GUI_WPF
 {
     public partial class MainWindow
     {
+        private static string? _accuracyLevel;
+        private static int _accuracyFactor;
+
         public MainWindow()
         {
             InitializeComponent();
+            _accuracyLevel = GetAccuracyLevel();
+        }
+
+        private string GetAccuracyLevel()
+        {
+            _accuracyFactor = AccuracyController.SelectedIndex + 1;
+            return AccuracyController.SelectedIndex switch
+            {
+                0 => "低",
+                1 => "中",
+                2 => "高",
+                _ => "不合法的精确度等级"
+            };
         }
 
         private void GachaInCharacterPole_OnClick(object sender, RoutedEventArgs e)
@@ -54,6 +70,7 @@ namespace GUI_WPF
             CalculateValueOfLucky.IsEnabled = false;
             try
             {
+                //判断输入是否为空
                 if (string.IsNullOrEmpty(NumberOfLimitedCharacters.Text) ||
                     string.IsNullOrEmpty(NumberOfLimitedWeapons.Text) || string.IsNullOrEmpty(TotalGachaTimes.Text))
                 {
@@ -64,10 +81,19 @@ namespace GUI_WPF
                     var characterCount = int.Parse(NumberOfLimitedCharacters.Text);
                     var weaponCount = int.Parse(NumberOfLimitedWeapons.Text);
                     var totalGachaTimes = int.Parse(TotalGachaTimes.Text);
+
+                    //判断输入是否合法
+                    if (characterCount + weaponCount > totalGachaTimes || (characterCount + weaponCount == 0))
+                    {
+                        MessageBox.Show("输入的数据不合法", "警告");
+                        return;
+                    }
+
+
                     var result = await Task.Run(() => GachaCalcApi.GachaLuckyValueCalculate(characterCount, weaponCount,
-                        totalGachaTimes));
+                        totalGachaTimes, _accuracyFactor));
                     var stringResult =
-                        $"你总共花费{totalGachaTimes}抽，获得{characterCount}只限定角色，{weaponCount}把限定武器，在模拟大量玩家抽卡的情况下，你的运气超越了{result.Item2:F3}%的玩家。（计算用时：{result.Item3}秒）";
+                        $"你总共花费{totalGachaTimes}抽，获得{characterCount}只限定角色，{weaponCount}把限定武器。\r\n在模拟大量玩家抽卡的情况下，你的运气超越了{result.Item2:F4}%的玩家。\r\n（模拟精度：{_accuracyLevel}精度；计算用时：{result.Item3}秒）";
                     ResultOfLuckyValue.Text = stringResult;
                 }
             }
@@ -77,7 +103,7 @@ namespace GUI_WPF
             }
             finally
             {
-                await Task.Delay(1000);
+                await Task.Delay(100);
                 // 重新启用按钮
                 CalculateValueOfLucky.IsEnabled = true;
             }
@@ -90,6 +116,11 @@ namespace GUI_WPF
             {
                 textBox.Clear();
             }
+        }
+
+        private void AccuracyController_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _accuracyLevel = GetAccuracyLevel();
         }
     }
 }

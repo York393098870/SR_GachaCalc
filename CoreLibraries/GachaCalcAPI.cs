@@ -45,7 +45,7 @@ public static class GachaCalcApi
 
     public static (double, double, double) GachaLuckyValueCalculate(int characterCount, int weaponCount,
             int totalGachaTimes,
-            int accuracyControl = 2)
+            int accuracyControl = 1)
         //给定限定角色/武器数量和总抽数，计算幸运值
     {
         int simulations;

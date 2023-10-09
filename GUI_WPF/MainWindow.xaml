@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="崩坏：星穹铁道抽卡工具箱 V0.2.1测试版" Height="300" Width="500"
+        Title="崩坏：星穹铁道抽卡工具箱 V0.2.1测试版" Height="350" Width="500"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -101,13 +101,20 @@
                         <RowDefinition Height="20"></RowDefinition>
                         <RowDefinition Height="20"></RowDefinition>
                         <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
 
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center"
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center"
                                HorizontalAlignment="Center">
-                        请输入获得的Up角色、Up光锥数量、消耗抽数后点击欧非计算按钮
+                        请输入获得的Up角色、光锥数量，并选择模拟精确度：
                     </TextBlock>
+                    <ComboBox Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                              Name="AccuracyController" SelectionChanged="AccuracyController_OnSelectionChanged" IsReadOnly="True">
+                        <ComboBoxItem>低精确度（默认）</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">中精确度</ComboBoxItem>
+                        <ComboBoxItem>高精确度（谨慎选择）</ComboBoxItem>
+                    </ComboBox>
 
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
@@ -140,7 +147,7 @@
                         进行欧非计算
                     </Button>
 
-                    <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="2"
+                    <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="3"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" Name="ResultOfLuckyValue" TextWrapping="Wrap">
                         尚未开始欧非计算
@@ -150,7 +157,8 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="抽卡分布图形生成">
+            <TabItem Header="抽卡分布图形生成(开发中)">
+
 
             </TabItem>
         </TabControl>
