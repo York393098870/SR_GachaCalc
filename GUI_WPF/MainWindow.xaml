@@ -110,7 +110,8 @@
                         请输入获得的Up角色、光锥数量，并选择模拟精确度：
                     </TextBlock>
                     <ComboBox Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"
-                              Name="AccuracyController" SelectionChanged="AccuracyController_OnSelectionChanged" IsReadOnly="True">
+                              Name="AccuracyController" SelectionChanged="AccuracyController_OnSelectionChanged"
+                              IsReadOnly="True">
                         <ComboBoxItem>低精确度（默认）</ComboBoxItem>
                         <ComboBoxItem IsSelected="True">中精确度</ComboBoxItem>
                         <ComboBoxItem>高精确度（谨慎选择）</ComboBoxItem>
@@ -123,6 +124,7 @@
                     </TextBlock>
                     <TextBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Name="NumberOfLimitedCharacters"
                              TextChanged="AllowOnlyNumbers">
+                        0
                     </TextBox>
 
 
@@ -132,6 +134,7 @@
                     </TextBlock>
                     <TextBox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Name="NumberOfLimitedWeapons"
                              TextChanged="AllowOnlyNumbers">
+                        0
                     </TextBox>
 
                     <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
@@ -140,6 +143,7 @@
                     </TextBlock>
                     <TextBox Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Name="TotalGachaTimes"
                              TextChanged="AllowOnlyNumbers">
+                        0
                     </TextBox>
 
                     <Button Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"
@@ -147,7 +151,7 @@
                         进行欧非计算
                     </Button>
 
-                    <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="3"
+                    <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="4"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" Name="ResultOfLuckyValue" TextWrapping="Wrap">
                         尚未开始欧非计算

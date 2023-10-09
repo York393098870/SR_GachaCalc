@@ -3,7 +3,21 @@
 //该部分主要以获得指定数量为目的，模拟抽卡结果
 public static class GachaCalcByCounts
 {
-    private static ThreadLocal<Random> _random = new ThreadLocal<Random>(() => new Random());
+    private static int _seedCounter;
+    private static readonly object Lock = new();
+
+    private static readonly ThreadLocal<Random> Random = new(
+        () =>
+        {
+            int seed;
+            lock (Lock)
+            {
+                seed = _seedCounter++;
+            }
+
+            return new Random(seed);
+        }
+    );
 
 
     //给定希望获得的限定角色和武器数量，返回所需要的抽数
@@ -12,11 +26,11 @@ public static class GachaCalcByCounts
     {
         var normalRoleCount = 0;
         var normalWeaponCount = 0;
-        var gachaTimesOfRole = 1;
+        var gachaTimesOfCharacter = 1;
         var gachaTimesOfWeapon = 1;
 
         //保底机制
-        var hasPityOfRole = false;
+        var hasPityOfCharacter = false;
         var hasPityOfWeapon = false;
 
         //角色池抽奖逻辑
@@ -24,23 +38,23 @@ public static class GachaCalcByCounts
         for (var i = 0; i < targetAmountsOfLimitedRole;)
         {
             //先完成一次抽卡
-            gachaTimesOfRole++;
+            gachaTimesOfCharacter++;
 
-            if (_random.Value.NextDouble() < GachaCalcTools.GetSucceedProbabilityOfCharacter(m))
+            if (Random.Value.NextDouble() < GachaCalcTools.GetSucceedProbabilityOfCharacter(m))
             {
                 //抽到五星时的情况
                 m = 1; //只要获得五星，直接重置循环
 
-                if (hasPityOfRole)
+                if (hasPityOfCharacter)
                 {
                     //有大保底时的逻辑
                     i++;
-                    hasPityOfRole = false; //清空已有的保底
+                    hasPityOfCharacter = false; //清空已有的保底
                 }
                 else
                 {
                     //无大保底时的逻辑
-                    if (_random.Value.NextDouble() < GlobalVariables.GetLimitedCharacterRate)
+                    if (Random.Value.NextDouble() < GlobalVariables.GetLimitedCharacterRate)
                     {
                         //出限定的情况
                         i++;
@@ -49,7 +63,7 @@ public static class GachaCalcByCounts
                     {
                         //歪常驻的情况
                         normalRoleCount++;
-                        hasPityOfRole = true; //为下一次添加大保底
+                        hasPityOfCharacter = true; //为下一次添加大保底
                     }
                 }
             }
@@ -67,7 +81,7 @@ public static class GachaCalcByCounts
             //先完成一次抽卡
             gachaTimesOfWeapon++;
 
-            if (_random.Value.NextDouble() < GachaCalcTools.GetSucceedProbabilityOfWeapon(n))
+            if (Random.Value.NextDouble() < GachaCalcTools.GetSucceedProbabilityOfWeapon(n))
             {
                 //抽到五星时的情况
                 n = 1; //只要获得五星，直接重置循环
@@ -81,7 +95,7 @@ public static class GachaCalcByCounts
                 else
                 {
                     //无大保底时的逻辑
-                    if (_random.Value.NextDouble() < GlobalVariables.GetLimitedWeaponRate)
+                    if (Random.Value.NextDouble() < GlobalVariables.GetLimitedWeaponRate)
                     {
                         //出限定的情况
                         i++;
@@ -101,6 +115,6 @@ public static class GachaCalcByCounts
             }
         }
 
-        return (normalRoleCount, gachaTimesOfRole, gachaTimesOfWeapon, normalWeaponCount);
+        return (normalRoleCount, gachaTimesOfCharacter, gachaTimesOfWeapon, normalWeaponCount);
     }
 }
