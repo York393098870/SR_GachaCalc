@@ -4,7 +4,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using CoreLibraries;
+using Exception = System.Exception;
 
 namespace GUI_WPF
 {
@@ -17,6 +19,23 @@ namespace GUI_WPF
         {
             InitializeComponent();
             _accuracyLevel = GetAccuracyLevel();
+        }
+
+        private void SetImageSource(Image imageControl, string imagePath)
+        {
+            try
+            {
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+
+                imageControl.Source = bitmap;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"加载图片时出错: {ex.Message}", "错误");
+            }
         }
 
         private string GetAccuracyLevel()
@@ -61,7 +80,7 @@ namespace GUI_WPF
 
         private void OpenWebsite_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(GlobalVariables.UrlGithub) { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo(GlobalStaticVariables.UrlGithub) { UseShellExecute = true });
         }
 
         private async void CalculateLuckyValue(object sender, RoutedEventArgs e)
@@ -121,6 +140,44 @@ namespace GUI_WPF
         private void AccuracyController_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _accuracyLevel = GetAccuracyLevel();
+        }
+
+        private async void GenerateDistributionImages(object sender, RoutedEventArgs e)
+        {
+            ButtonOfDistributionCalculation.IsEnabled = false;
+
+            if (string.IsNullOrEmpty(NumberOfCharacterOfDistribution.Text) ||
+                string.IsNullOrEmpty(NumberOfWeaponOfDistribution.Text))
+            {
+                MessageBox.Show("输入的数据不完整", "警告");
+            }
+            else
+            {
+                try
+                {
+                    var characterCount = int.Parse(NumberOfCharacterOfDistribution.Text);
+                    var weaponCount = int.Parse(NumberOfWeaponOfDistribution.Text);
+                    double[]? x = null;
+                    double[]? y = null;
+                    await Task.Run(() =>
+                    {
+                        (x, y) =
+                            ProbabilityDistributionPlotter.PlotProbabilityDistribution(characterCount, weaponCount);
+                    });
+                    PlottingArea.Plot.Clear();
+                    PlottingArea.Plot.Title($"获取{characterCount}只限定角色和{weaponCount}只限定光锥的概率密度函数分布曲线");
+                    PlottingArea.Plot.AddScatter(x, y);
+                    PlottingArea.Refresh();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"发生错误: {ex.Message}", "错误");
+                }
+                finally
+                {
+                    ButtonOfDistributionCalculation.IsEnabled = true;
+                }
+            }
         }
     }
 }

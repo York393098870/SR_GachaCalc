@@ -28,7 +28,7 @@ switch (calculateMode)
 
         for (var i = 1; i <= simulations; i++)
         {
-            var gachaResult = GachaCalcByCounts.GachaCalc(targetNumbersOfRole, targetNumberOfWeapon); // 模拟函数
+            var gachaResult = GachaCalcByTargetCounts.GachaCalc(targetNumbersOfRole, targetNumberOfWeapon); // 模拟函数
             allTries.Add(gachaResult.gachaTimesOfRole + gachaResult.gachaTimesOfWeapon);
         }
 

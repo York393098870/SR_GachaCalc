@@ -1,7 +1,7 @@
 ﻿namespace CoreLibraries;
 
 //该部分主要以获得指定数量为目的，模拟抽卡结果
-public static class GachaCalcByCounts
+public static class GachaCalcByTargetCounts
 {
     private static int _seedCounter;
     private static readonly object Lock = new();
@@ -21,8 +21,9 @@ public static class GachaCalcByCounts
 
 
     //给定希望获得的限定角色和武器数量，返回所需要的抽数
-    public static (int normalRoleCount, int gachaTimesOfRole, int gachaTimesOfWeapon, int normalWeaponCount) GachaCalc(
-        int targetAmountsOfLimitedRole, int targetAmountsOfLimitedWeapon)
+    public static (int normalRoleCount, int gachaTimesOfRole, int gachaTimesOfWeapon, int normalWeaponCount, int
+        totalGachaTimes) GachaCalc(
+            int targetAmountsOfLimitedRole, int targetAmountsOfLimitedWeapon)
     {
         var normalRoleCount = 0;
         var normalWeaponCount = 0;
@@ -54,7 +55,7 @@ public static class GachaCalcByCounts
                 else
                 {
                     //无大保底时的逻辑
-                    if (Random.Value.NextDouble() < GlobalVariables.GetLimitedCharacterRate)
+                    if (Random.Value.NextDouble() < GlobalStaticVariables.GetLimitedCharacterRate)
                     {
                         //出限定的情况
                         i++;
@@ -95,7 +96,7 @@ public static class GachaCalcByCounts
                 else
                 {
                     //无大保底时的逻辑
-                    if (Random.Value.NextDouble() < GlobalVariables.GetLimitedWeaponRate)
+                    if (Random.Value.NextDouble() < GlobalStaticVariables.GetLimitedWeaponRate)
                     {
                         //出限定的情况
                         i++;
@@ -115,6 +116,10 @@ public static class GachaCalcByCounts
             }
         }
 
-        return (normalRoleCount, gachaTimesOfCharacter, gachaTimesOfWeapon, normalWeaponCount);
+        var gachaTimesOfAll = gachaTimesOfCharacter + gachaTimesOfWeapon;
+
+
+        return (normalRoleCount, gachaTimesOfCharacter, gachaTimesOfWeapon, normalWeaponCount,
+            gachaTimesOfAll);
     }
 }

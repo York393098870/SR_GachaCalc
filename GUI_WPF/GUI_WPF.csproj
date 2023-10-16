@@ -11,4 +11,8 @@
       <ProjectReference Include="..\CoreLibraries\CoreLibraries.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="ScottPlot.WPF" Version="4.1.68" />
+    </ItemGroup>
+
 </Project>

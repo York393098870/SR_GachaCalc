@@ -1,14 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLibraries", "CoreLibraries\CoreLibraries.csproj", "{171F870C-8AFB-42E9-B873-AB97737FA932}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreLibraries", "CoreLibraries\CoreLibraries.csproj", "{171F870C-8AFB-42E9-B873-AB97737FA932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{A2C1A3F4-1D0C-44F3-8936-DDC7195BD9B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLI", "CLI\CLI.csproj", "{A2C1A3F4-1D0C-44F3-8936-DDC7195BD9B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI_Avalonia", "GUI_Avalonia\GUI_Avalonia.csproj", "{AB31F1F0-D14E-48D1-A359-82D8B66BF952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI_Avalonia", "GUI_Avalonia\GUI_Avalonia.csproj", "{AB31F1F0-D14E-48D1-A359-82D8B66BF952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI_WPF", "GUI_WPF\GUI_WPF.csproj", "{9C1D160F-548B-42CB-885E-32E024364862}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnit", "TestUnit\TestUnit.csproj", "{7316CE04-35C3-4B39-B943-08187E83C95B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI_WPF", "GUI_WPF\GUI_WPF.csproj", "{9C1D160F-548B-42CB-885E-32E024364862}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,11 +33,8 @@ Global
 		{9C1D160F-548B-42CB-885E-32E024364862}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C1D160F-548B-42CB-885E-32E024364862}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C1D160F-548B-42CB-885E-32E024364862}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7316CE04-35C3-4B39-B943-08187E83C95B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7316CE04-35C3-4B39-B943-08187E83C95B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7316CE04-35C3-4B39-B943-08187E83C95B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7316CE04-35C3-4B39-B943-08187E83C95B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

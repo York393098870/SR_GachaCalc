@@ -20,12 +20,12 @@ public static class GachaCalcByTimes
         {
             case "role":
                 getProbability = GachaCalcTools.GetSucceedProbabilityOfCharacter;
-                getLimitedRate = GlobalVariables.GetLimitedCharacterRate;
+                getLimitedRate = GlobalStaticVariables.GetLimitedCharacterRate;
                 break;
 
             case "weapon":
                 getProbability = GachaCalcTools.GetSucceedProbabilityOfWeapon;
-                getLimitedRate = GlobalVariables.GetLimitedWeaponRate;
+                getLimitedRate = GlobalStaticVariables.GetLimitedWeaponRate;
                 break;
 
             default:

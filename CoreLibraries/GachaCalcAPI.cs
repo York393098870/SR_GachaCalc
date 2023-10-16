@@ -62,7 +62,7 @@ public static class GachaCalcApi
         var stopwatch = Stopwatch.StartNew(); //开始计时
         Parallel.For(0, simulations, _ =>
         {
-            var gachaResult = GachaCalcByCounts.GachaCalc(characterCount, weaponCount);
+            var gachaResult = GachaCalcByTargetCounts.GachaCalc(characterCount, weaponCount);
             allTries.Add(gachaResult.gachaTimesOfRole + gachaResult.gachaTimesOfWeapon);
         });
 
