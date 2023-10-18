@@ -12,7 +12,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="单卡池模拟">
+            <TabItem Header="单卡池模拟" IsSelected="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -24,56 +24,74 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="15"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
-                        <RowDefinition Height="15"></RowDefinition>
-                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
 
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center">模拟指定Up池抽卡：</TextBlock>
 
-                    <RadioButton Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                 HorizontalAlignment="Center">
-                        Up角色池
-                    </RadioButton>
-                    <RadioButton Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center"
-                                 HorizontalAlignment="Center">
-                        Up光锥池
-                    </RadioButton>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center"
+                    <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="6" VerticalAlignment="Center">模拟指定Up池抽卡：</TextBlock>
+                    <DockPanel Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="7" VerticalAlignment="Center"
+                               LastChildFill="False">
+                        <RadioButton VerticalAlignment="Center" DockPanel.Dock="Left" Name="CharacterRadioButton">
+                            Up角色池
+                        </RadioButton>
+                        <RadioButton VerticalAlignment="Center" DockPanel.Dock="Right" Name="WeaponRadioButton">
+                            Up光锥池
+                        </RadioButton>
+                    </DockPanel>
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="7" VerticalAlignment="Center"
                                HorizontalAlignment="Center">
                         模拟投入角色Up池的抽数：
                     </TextBlock>
-                    <TextBox Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Name="CharacterInput"
-                             IsEnabled="{Binding Path=IsChecked,ElementName=CharacterPool}"
+                    <TextBox Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="4" Name="CharacterInput"
+                             IsEnabled="{Binding Path=IsChecked,ElementName=CharacterRadioButton}"
                              TextChanged="AllowOnlyNumbers">
                     </TextBox>
-                    <Button Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                    <Button Grid.Row="3" Grid.Column="14" Grid.ColumnSpan="5" HorizontalAlignment="Left"
                             Click="GachaInCharacterPole_OnClick"
-                            IsEnabled="{Binding Path=IsChecked,ElementName=CharacterPool}">
+                            IsEnabled="{Binding Path=IsChecked,ElementName=CharacterRadioButton}">
                         开始模拟计算
                     </Button>
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center"
+                    <TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="7" VerticalAlignment="Center"
                                HorizontalAlignment="Center">
                         模拟投入光锥Up池的抽数：
                     </TextBlock>
-                    <TextBox Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Name="WeaponInput"
-                             IsEnabled="{Binding Path=IsChecked,ElementName=WeaponPool}" TextChanged="AllowOnlyNumbers">
+                    <TextBox Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="4" Name="WeaponInput"
+                             IsEnabled="{Binding Path=IsChecked,ElementName=WeaponRadioButton}"
+                             TextChanged="AllowOnlyNumbers">
                     </TextBox>
-                    <Button Grid.Row="5" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                    <Button Grid.Row="5" Grid.Column="14" Grid.ColumnSpan="5" HorizontalAlignment="Left"
                             Click="GachaInWeaponPole_OnClick"
-                            IsEnabled="{Binding Path=IsChecked,ElementName=WeaponPool}">
+                            IsEnabled="{Binding Path=IsChecked,ElementName=WeaponRadioButton}">
                         开始模拟计算
                     </Button>
-                    <Button Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="访问项目开源地址"
+
+                    <Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="5" Content="访问项目开源地址"
                             Click="OpenWebsite_OnClick">
                     </Button>
 
@@ -164,7 +182,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="抽卡分布图形生成" IsSelected="True">
+            <TabItem Header="抽卡分布图形生成" IsSelected="False">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -242,7 +260,7 @@
                     </Button>
 
 
-                    <scottPlot:WpfPlot Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="22"
+                    <scottPlot:WpfPlot Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="24"
                                        x:Name="PlottingArea" Visibility="Visible">
                     </scottPlot:WpfPlot>
 
