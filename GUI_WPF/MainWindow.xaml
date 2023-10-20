@@ -260,7 +260,7 @@
                     </Button>
 
 
-                    <scottPlot:WpfPlot Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="24"
+                    <scottPlot:WpfPlot Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="24"
                                        x:Name="PlottingArea" Visibility="Visible">
                     </scottPlot:WpfPlot>
 
