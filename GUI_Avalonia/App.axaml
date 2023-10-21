@@ -2,14 +2,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="GUI_Avalonia.App"
              xmlns:local="using:GUI_Avalonia"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             RequestedThemeVariant="Default"
+             xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui">
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
+
     <Application.Styles>
-        <FluentTheme />
+        <actipro:ModernTheme>
+            <Style Selector="Button.default"></Style>
+        </actipro:ModernTheme>
+        <!-- <FluentTheme /> -->
     </Application.Styles>
+
+    <Application.Resources>
+
+        <FontFamily x:Key="OppoFontBold">avares://GUI_Avalonia/Assets#OPlusSans 3.0</FontFamily>
+
+    </Application.Resources>
+
 </Application>

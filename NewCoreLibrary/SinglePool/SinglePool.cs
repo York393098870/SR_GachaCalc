@@ -1,12 +1,25 @@
 ﻿namespace NewCoreLibrary.SinglePool;
 
-using static NewCoreLibrary.Tools;
+using static Tools;
 
 public abstract class SinglePool
 //用于模拟单个池子抽奖的类
 {
-    protected int TotalGachaTimes;
-    protected bool IsLastTryFailed; //大保底
+    private int _totalGachaTimes;
+    private bool _isLastTryFailed; //大保底
+
+    public int TotalGachaTimes
+    {
+        get => _totalGachaTimes;
+
+        protected set => _totalGachaTimes = value;
+    }
+
+    public bool IsLastTryFailed
+    {
+        get => _isLastTryFailed;
+        protected set => _isLastTryFailed = value;
+    }
 
     protected SinglePool(int totalGachaTimes, bool isLastTryFailed = false)
     {
@@ -15,8 +28,8 @@ public abstract class SinglePool
             throw new ArgumentOutOfRangeException(nameof(totalGachaTimes), "总抽卡次数不允许小于1");
         }
 
-        TotalGachaTimes = totalGachaTimes;
-        IsLastTryFailed = isLastTryFailed;
+        _totalGachaTimes = totalGachaTimes;
+        _isLastTryFailed = isLastTryFailed;
     }
 
     protected virtual double GetProbability(int i)
@@ -31,38 +44,48 @@ public abstract class SinglePool
 
     public (int, int) CalculateByGachaTimes()
     {
-        var LimitedFiveStarCount = 0;
-        var NormalFiveStarCount = 0;
+        var limitedFiveStarCount = 0;
+        var normalFiveStarCount = 0;
+
+        var n = 1;
 
         for (var i = 1;
-             i <= TotalGachaTimes;
+             i <= _totalGachaTimes;
              i++)
         {
             //判断单次抽卡是否成功
-            if (!Lottery.CheckIfSucceed(GetProbability(i))) continue;
-            //判断保底，有保底则直接强娶
-            if (IsLastTryFailed)
+            if (Lottery.CheckIfSucceed(GetProbability(n)))
             {
-                LimitedFiveStarCount++;
-                IsLastTryFailed = false; //清空已有的大保底
-            }
-            else
-            {
-                //无保底的情况下判断是否歪常驻
-                if (Lottery.CheckIfSucceed(GetLimitedRateWhenSucceed()))
+                //出金时的逻辑
+                //判断保底，有保底则直接获得
+                if (_isLastTryFailed)
                 {
-                    //没歪常驻
-                    LimitedFiveStarCount++;
+                    limitedFiveStarCount++;
+                    _isLastTryFailed = false; //清空已有的大保底
+                    n = 1; //重置循环
                 }
                 else
                 {
-                    //歪常驻
-                    NormalFiveStarCount++;
-                    IsLastTryFailed = true; //增加大保底
+                    //无保底的情况下判断是否歪常驻
+                    if (Lottery.CheckIfSucceed(GetLimitedRateWhenSucceed()))
+                    {
+                        //没歪常驻
+                        limitedFiveStarCount++;
+                        n = 1; //重置循环
+                    }
+                    else
+                    {
+                        //歪常驻
+                        normalFiveStarCount++;
+                        _isLastTryFailed = true; //增加大保底
+                        n = 1; //重置循环
+                    }
                 }
             }
+
+            n++;
         }
 
-        return (LimitedFiveStarCount, NormalFiveStarCount);
+        return (limitedFiveStarCount, normalFiveStarCount);
     }
 }

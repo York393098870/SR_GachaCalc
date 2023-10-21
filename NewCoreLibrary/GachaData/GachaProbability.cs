@@ -27,7 +27,7 @@ public static class GachaProbability
             "LimitedCharacterPool" => n switch
             {
                 >= 1 and <= 73 => (0.6d) / 100,
-                <= 89 => ((0.6d) + 6.6d * (n - 73)) / 100,
+                <= 89 => ((0.6d) + 6d * (n - 73)) / 100,
                 90 => 1,
                 _ => throw new ArgumentOutOfRangeException(nameof(n), "单次循环当中，不允许的抽卡次数")
             },

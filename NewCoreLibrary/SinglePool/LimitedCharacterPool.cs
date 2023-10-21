@@ -4,7 +4,7 @@ using static NewCoreLibrary.GachaData.GachaProbability;
 
 public class LimitedCharacterPool : SinglePool
 {
-    public LimitedCharacterPool(int totalGachaTimes, bool isLastTryFailed) : base(totalGachaTimes, isLastTryFailed)
+    public LimitedCharacterPool(int totalGachaTimes, bool isLastTryFailed=false) : base(totalGachaTimes, isLastTryFailed)
     {
     }
 
