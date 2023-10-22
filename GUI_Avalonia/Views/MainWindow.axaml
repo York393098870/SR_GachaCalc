@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
-        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="350"
-        Width="500" Height="350"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+        Width="1000" Height="700"
         x:Class="GUI_Avalonia.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -16,19 +16,78 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
+
     <Window.Styles>
         <Style Selector="Button">
             <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}" />
         </Style>
+
+        <Style Selector="TabItem">
+            <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
     </Window.Styles>
+
     <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
-        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Text="{Binding Greeting}"
-                   VerticalAlignment="Center" />
-        <Button Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="2"
-                FontSize="12">
-            测试字体
-        </Button>
+        <TabControl Grid.Row="1" Grid.Column="1" Grid.RowSpan="18" Grid.ColumnSpan="18">
+            <TabItem Header="Up卡池单卡池抽卡模拟">
+                <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
+                      RowDefinitions="*,*,*,*,*,*,*,*,*,*">
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel.Styles>
+                            <Style Selector="RadioButton">
+                                <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
+                                <Setter Property="FontSize" Value="16"></Setter>
+                            </Style>
+                            <Style Selector="TextBlock">
+                                <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
+                                <Setter Property="FontSize" Value="16"></Setter>
+                            </Style>
+                        </StackPanel.Styles>
+                        <TextBlock xml:space="preserve">请选择模拟的Up池:  </TextBlock>
+                        <RadioButton x:Name="ChooseCharacterPool" GroupName="ChooseSinglePool" xml:space="preserve">Up角色池  </RadioButton>
+                        <RadioButton x:Name="ChooseWeaponPool" GroupName="ChooseSinglePool">Up角色池</RadioButton>
+                    </StackPanel>
+
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10">
+                        <Grid.Styles>
+                            <Style Selector="Button">
+                                <Setter Property="FontSize" Value="14"></Setter>
+                            </Style>
+                            <Style Selector="TextBox">
+                                <Setter Property="FontSize" Value="14"></Setter>
+                            </Style>
+                            <Style Selector="TextBlock">
+                                <Setter Property="FontSize" Value="14"></Setter>
+                                <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
+                            </Style>
+                        </Grid.Styles>
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+                              RowDefinitions="*">
+                            <TextBlock Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">投入Up池的抽数：</TextBlock>
+                            <TextBox Grid.Column="4" Grid.ColumnSpan="3"></TextBox>
+                            <Button Grid.Column="8" Grid.ColumnSpan="3">计算抽卡结果</Button>
+                        </Grid>
+
+
+                    </Grid>
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Header="抽卡欧非计算器">
+
+            </TabItem>
+        </TabControl>
+
+
+        <!-- <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Text="{Binding Greeting}" -->
+        <!--            VerticalAlignment="Center" /> -->
+
+
     </Grid>
 
 
