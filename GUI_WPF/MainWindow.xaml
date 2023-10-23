@@ -91,7 +91,7 @@
                         开始模拟计算
                     </Button>
 
-                    <Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="5" Content="访问项目开源地址"
+                    <Button Grid.Row="7" Grid.Column="8" Grid.ColumnSpan="4"  Content="访问项目开源地址"
                             Click="OpenWebsite_OnClick">
                     </Button>
 

@@ -32,12 +32,20 @@
     <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
         <TabControl Grid.Row="1" Grid.Column="1" Grid.RowSpan="18" Grid.ColumnSpan="18">
-            <TabItem Header="Up卡池单卡池抽卡模拟">
+            <TabItem Header="抽卡模拟：单卡池">
                 <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
                       RowDefinitions="*,*,*,*,*,*,*,*,*,*">
+                    <Grid.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
+                            <Setter Property="FontSize" Value="16"></Setter>
+                        </Style>
+                    </Grid.Styles>
 
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <StackPanel.Styles>
+                    <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6"
+                          VerticalAlignment="Center" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+
+                        <Grid.Styles>
                             <Style Selector="RadioButton">
                                 <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
                                 <Setter Property="FontSize" Value="16"></Setter>
@@ -46,13 +54,24 @@
                                 <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
                                 <Setter Property="FontSize" Value="16"></Setter>
                             </Style>
-                        </StackPanel.Styles>
-                        <TextBlock xml:space="preserve">请选择模拟的Up池:  </TextBlock>
-                        <RadioButton x:Name="ChooseCharacterPool" GroupName="ChooseSinglePool" xml:space="preserve">Up角色池  </RadioButton>
-                        <RadioButton x:Name="ChooseWeaponPool" GroupName="ChooseSinglePool">Up角色池</RadioButton>
-                    </StackPanel>
+                        </Grid.Styles>
 
-                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10">
+
+                        <TextBlock Grid.Column="2" Grid.ColumnSpan="6">请选择模拟的Up池:</TextBlock>
+                        <RadioButton Grid.Column="8" Grid.ColumnSpan="4" x:Name="ChooseCharacterPool"
+                                     GroupName="ChooseSinglePool"
+                                     IsChecked="{Binding IsCharacterPoolSelected}">
+                            Up角色池
+                        </RadioButton>
+                        <RadioButton Grid.Column="13" Grid.ColumnSpan="4" x:Name="ChooseWeaponPool"
+                                     GroupName="ChooseSinglePool"
+                                     IsChecked="{Binding IsWeaponPoolSelected}">
+                            Up光锥池
+                        </RadioButton>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="9">
                         <Grid.Styles>
                             <Style Selector="Button">
                                 <Setter Property="FontSize" Value="14"></Setter>
@@ -67,25 +86,33 @@
                         </Grid.Styles>
                         <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
                               RowDefinitions="*">
-                            <TextBlock Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">投入Up池的抽数：</TextBlock>
-                            <TextBox Grid.Column="4" Grid.ColumnSpan="3"></TextBox>
-                            <Button Grid.Column="8" Grid.ColumnSpan="3">计算抽卡结果</Button>
+                            <TextBlock Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center">投入Up池的抽数：</TextBlock>
+                            <TextBox Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Center"
+                                     Text="{Binding GachaByTimesInput}">
+                            </TextBox>
+                            <Button Grid.Column="9" Grid.ColumnSpan="3" VerticalAlignment="Center"
+                                    Command="{Binding ProcessCommand}">
+                                计算抽卡结果
+                            </Button>
                         </Grid>
 
 
                     </Grid>
+                    <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="3" BorderBrush="Black"
+                            BorderThickness="1" BoxShadow="5 5 10 0 DarkGray" Padding="5">
+                        <TextBlock
+                            Text="{Binding GachaByTimesOutput}">
+                        </TextBlock>
+                    </Border>
+
                 </Grid>
 
 
             </TabItem>
-            <TabItem Header="抽卡欧非计算器">
+            <TabItem Header="欧非计算器">
 
             </TabItem>
         </TabControl>
-
-
-        <!-- <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Text="{Binding Greeting}" -->
-        <!--            VerticalAlignment="Center" /> -->
 
 
     </Grid>
