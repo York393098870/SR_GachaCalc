@@ -1,12 +1,11 @@
-﻿using System;
-
-namespace GUI_Avalonia.Models;
+﻿namespace GUI_Avalonia.Models;
 
 using NewCoreLibrary.SinglePool;
+using System;
 
 public class GachaByTimesModel
 {
-    public static string Process(int counts, int poolType, bool debugmode = false)
+    public static string Process(int counts, int poolType, bool debugMode = false)
     {
         SinglePool singlePool = poolType switch
         {
@@ -29,7 +28,7 @@ public class GachaByTimesModel
 
         var result = singlePool.CalculateByGachaTimes();
         var average = (double)counts / result.Item1;
-        if (debugmode)
+        if (debugMode)
         {
             return
                 $"模拟{poolName}抽卡{counts}次的情况，获得{result.Item1}个限定{thingName}，{result.Item2}个常驻{thingName}，平均{average:F1}抽获得一个限定{thingName}";

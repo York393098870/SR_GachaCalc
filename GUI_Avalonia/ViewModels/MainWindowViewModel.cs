@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Reactive;
 using GUI_Avalonia.Models;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using ReactiveUI;
+
 
 namespace GUI_Avalonia.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase
 {
     private string _gachaByTimesInput;
     private string _gachaByTimesOutput = "尚未开始模拟抽卡：\r\n请选择卡池后，输入模拟抽卡次数并点击计算";
@@ -13,7 +16,10 @@ public class MainWindowViewModel : ViewModelBase
     private bool _isCharacterPoolSelected;
     private bool _isWeaponPoolSelected;
 
-    private bool IsOnePoolSelected => IsCharacterPoolSelected || IsWeaponPoolSelected;
+    private string _limitedCharacterCounts;
+    private string _limitedWeaponCounts;
+    private string _gachaTimes;
+
 
     public string GachaByTimesInput
     {
@@ -39,6 +45,25 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _isWeaponPoolSelected, value);
     }
 
+    public string LimitedCharacterCounts
+    {
+        get => _limitedCharacterCounts;
+        set
+            => this.RaiseAndSetIfChanged(ref _limitedCharacterCounts, value);
+    }
+
+    public string LimitedWeaponCounts
+    {
+        get => _limitedWeaponCounts;
+        set => this.RaiseAndSetIfChanged(ref _limitedWeaponCounts, value);
+    }
+
+    public string GachaTimes
+    {
+        get => _gachaTimes;
+        set => this.RaiseAndSetIfChanged(ref _gachaTimes, value);
+    }
+
 
     public ReactiveCommand<Unit, Unit> ProcessCommand { get; }
 
@@ -47,12 +72,12 @@ public class MainWindowViewModel : ViewModelBase
         var canExecute = this.WhenAny(x => x.IsCharacterPoolSelected, x => x.IsWeaponPoolSelected,
                 (characterSelected, weaponSelected) => characterSelected.GetValue() || weaponSelected.GetValue())
             ;
-        ProcessCommand = ReactiveCommand.Create(Process, canExecute);
+        ProcessCommand = ReactiveCommand.Create(CalculateSinglePool, canExecute);
     }
 
-    private void Process()
+
+    private void CalculateSinglePool()
     {
-        var model = new GachaByTimesModel();
         int poolType;
         if (IsCharacterPoolSelected)
         {
@@ -67,6 +92,15 @@ public class MainWindowViewModel : ViewModelBase
             throw new InvalidOperationException("No pool type selected");
         }
 
-        GachaByTimesOutput = GachaByTimesModel.Process(int.Parse(GachaByTimesInput), poolType);
+
+        if (Tools.InputValidationCheck.OnlyAllowPositiveNumbers(GachaByTimesInput))
+        {
+            var result = GachaByTimesModel.Process(int.Parse(GachaByTimesInput), poolType);
+            GachaByTimesOutput = result;
+        }
+        else
+        {
+            GachaByTimesInput = "0";
+        }
     }
 }

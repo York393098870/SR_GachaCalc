@@ -12,7 +12,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="单卡池模拟" IsSelected="True">
+            <TabItem Header="单卡池模拟">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -91,13 +91,13 @@
                         开始模拟计算
                     </Button>
 
-                    <Button Grid.Row="7" Grid.Column="8" Grid.ColumnSpan="4"  Content="访问项目开源地址"
+                    <Button Grid.Row="7" Grid.Column="8" Grid.ColumnSpan="4" Content="访问项目开源地址"
                             Click="OpenWebsite_OnClick">
                     </Button>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="欧非计算器">
+            <TabItem Header="欧非计算器" IsSelected="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
