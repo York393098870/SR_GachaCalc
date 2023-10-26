@@ -92,11 +92,11 @@
                         <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
                               RowDefinitions="*">
                             <TextBlock Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center">投入Up池的抽数：</TextBlock>
-                            <NumericUpDown Grid.Column="6" Grid.ColumnSpan="3" VerticalAlignment="Center"
-                                           Text="{Binding GachaByTimesInput}" Increment="1">
-                            </NumericUpDown>
+                            <TextBox Grid.Column="6" Grid.ColumnSpan="3" VerticalAlignment="Center"
+                                     Text="{Binding GachaByTimesInput}">
+                            </TextBox>
                             <Button Grid.Column="10" Grid.ColumnSpan="3" VerticalAlignment="Center"
-                                    Command="{Binding ProcessCommand}">
+                                    Command="{Binding SinglePoolCalculate}">
                                 计算抽卡结果
                             </Button>
                         </Grid>
@@ -114,7 +114,7 @@
 
 
             </TabItem>
-            <TabItem Header="欧非计算器" IsSelected="True">
+            <TabItem Header="欧非计算器">
                 <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
                       RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
                     <Grid.Styles>
@@ -132,7 +132,8 @@
                                VerticalAlignment="Center">
                         请选择模拟计算的精确度：
                     </TextBlock>
-                    <ComboBox Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="3" SelectedIndex="1">
+                    <ComboBox Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="3"
+                              SelectedIndex="{Binding AccuracyLevel}">
                         <ComboBoxItem>低精确度</ComboBoxItem>
                         <ComboBoxItem>中精确度（默认）</ComboBoxItem>
                         <ComboBoxItem>高精确度（谨慎选择）</ComboBoxItem>
@@ -142,28 +143,28 @@
                                VerticalAlignment="Center">
                         总计获取的限定Up角色数：
                     </TextBlock>
-                    <NumericUpDown Grid.Column="8" Grid.Row="7" Grid.ColumnSpan="4" Grid.RowSpan="3"
-                                   Text="{Binding LimitedCharacterCounts}">
-                    </NumericUpDown>
+                    <TextBox Grid.Column="8" Grid.Row="7" Grid.ColumnSpan="4" Grid.RowSpan="3"
+                             Text="{Binding LimitedCharacterCounts}">
+                    </TextBox>
 
                     <TextBlock Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="4" Grid.RowSpan="3"
                                VerticalAlignment="Center">
                         总计获取的限定Up光锥数：
                     </TextBlock>
-                    <NumericUpDown Grid.Column="8" Grid.Row="12" Grid.ColumnSpan="4" Grid.RowSpan="3"
-                                   Text="{Binding LimitedWeaponCounts}">
-                    </NumericUpDown>
+                    <TextBox Grid.Column="8" Grid.Row="12" Grid.ColumnSpan="4" Grid.RowSpan="3"
+                             Text="{Binding LimitedWeaponCounts}">
+                    </TextBox>
 
                     <TextBlock Grid.Column="4" Grid.Row="17" Grid.ColumnSpan="4" Grid.RowSpan="3"
                                VerticalAlignment="Center" HorizontalAlignment="Center">
                         总计花费的抽数：
                     </TextBlock>
-                    <NumericUpDown Grid.Column="8" Grid.Row="17" Grid.ColumnSpan="4" Grid.RowSpan="3"
-                                   Text="{Binding GachaTimes}">
-                    </NumericUpDown>
+                    <TextBox Grid.Column="8" Grid.Row="17" Grid.ColumnSpan="4" Grid.RowSpan="3"
+                             Text="{Binding GachaTimes}">
+                    </TextBox>
 
                     <Button Grid.Column="13" Grid.Row="11" Grid.ColumnSpan="3" Grid.RowSpan="5"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center" Command="{Binding LuckyValueCalculate}">
                         启动计算
                     </Button>
 

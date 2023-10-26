@@ -2,7 +2,6 @@
 using System.Reactive;
 using GUI_Avalonia.Models;
 using MsBox.Avalonia;
-using MsBox.Avalonia.Enums;
 using ReactiveUI;
 
 
@@ -10,69 +9,22 @@ namespace GUI_Avalonia.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private string _gachaByTimesInput;
-    private string _gachaByTimesOutput = "尚未开始模拟抽卡：\r\n请选择卡池后，输入模拟抽卡次数并点击计算";
-
-    private bool _isCharacterPoolSelected;
-    private bool _isWeaponPoolSelected;
-
-    private string _limitedCharacterCounts;
-    private string _limitedWeaponCounts;
-    private string _gachaTimes;
-
-
-    public string GachaByTimesInput
-    {
-        get => _gachaByTimesInput;
-        set => this.RaiseAndSetIfChanged(ref _gachaByTimesInput, value);
-    }
-
-    public string GachaByTimesOutput
-    {
-        get => _gachaByTimesOutput;
-        set => this.RaiseAndSetIfChanged(ref _gachaByTimesOutput, value);
-    }
-
-    public bool IsCharacterPoolSelected
-    {
-        get => _isCharacterPoolSelected;
-        set => this.RaiseAndSetIfChanged(ref _isCharacterPoolSelected, value);
-    }
-
-    public bool IsWeaponPoolSelected
-    {
-        get => _isWeaponPoolSelected;
-        set => this.RaiseAndSetIfChanged(ref _isWeaponPoolSelected, value);
-    }
-
-    public string LimitedCharacterCounts
-    {
-        get => _limitedCharacterCounts;
-        set
-            => this.RaiseAndSetIfChanged(ref _limitedCharacterCounts, value);
-    }
-
-    public string LimitedWeaponCounts
-    {
-        get => _limitedWeaponCounts;
-        set => this.RaiseAndSetIfChanged(ref _limitedWeaponCounts, value);
-    }
-
-    public string GachaTimes
-    {
-        get => _gachaTimes;
-        set => this.RaiseAndSetIfChanged(ref _gachaTimes, value);
-    }
-
-
-    public ReactiveCommand<Unit, Unit> ProcessCommand { get; }
+    public ReactiveCommand<Unit, Unit> SinglePoolCalculate { get; }
+    public ReactiveCommand<Unit, Unit> LuckyValueCalculate { get; }
 
     public MainWindowViewModel()
     {
-        var canExecute = this.WhenAny(x => x.IsCharacterPoolSelected, x => x.IsWeaponPoolSelected,
+        var singlePoolCalculateCanExecute = this.WhenAny(x => x.IsCharacterPoolSelected, x => x.IsWeaponPoolSelected,
                 (characterSelected, weaponSelected) => characterSelected.GetValue() || weaponSelected.GetValue())
             ;
-        ProcessCommand = ReactiveCommand.Create(CalculateSinglePool, canExecute);
+        SinglePoolCalculate = ReactiveCommand.Create(CalculateSinglePool, singlePoolCalculateCanExecute);
+
+        var luckyValueCalculateCanExecute =
+            this.WhenAnyValue(x => x.LimitedCharacterCounts, x => x.LimitedWeaponCounts, x => x.GachaTimes,
+                (limitedCharacterCounts, limitedWeaponCounts, gachaTimes) =>
+                    !string.IsNullOrEmpty(limitedCharacterCounts) && !string.IsNullOrEmpty(limitedWeaponCounts) &&
+                    !string.IsNullOrEmpty(gachaTimes));
+        LuckyValueCalculate = ReactiveCommand.Create(CalculateLuckyValue, luckyValueCalculateCanExecute);
     }
 
 
@@ -101,6 +53,12 @@ public partial class MainWindowViewModel : ViewModelBase
         else
         {
             GachaByTimesInput = "0";
+            var alertBox = MessageBoxManager.GetMessageBoxStandard("警告", "抽卡次数应为正整数，请重新输入");
+            alertBox.ShowAsync();
         }
+    }
+
+    private void CalculateLuckyValue()
+    {
     }
 }

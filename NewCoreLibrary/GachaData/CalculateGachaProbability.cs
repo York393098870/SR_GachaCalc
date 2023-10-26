@@ -1,13 +1,13 @@
 ﻿namespace NewCoreLibrary.GachaData;
 
-public static class GachaProbability
+public static class CalculateGachaProbability
 {
     public static double[] ProbabilityForLimitedCharacterPool = new double[91];
     public static double[] ProbabilityForLimitedWeaponPool = new double[81];
     public static double ProbabilityForLimitedCharacterWhenSucceed = 0.5;
     public static double ProbabilityForLimitedWeaponWhenSucceed = 0.75;
 
-    static GachaProbability()
+    static CalculateGachaProbability()
     {
         for (var i = 1; i <= 90; i++)
         {

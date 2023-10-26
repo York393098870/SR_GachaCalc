@@ -20,4 +20,23 @@ public class Tools
             return randomNumber < successProbability;
         }
     }
+
+    public static string GetRateForLimitedFiveStarsAndNormalFiveStars(int limitedFiveStars, int normalFiveStars)
+    {
+        if (limitedFiveStars < 0 || normalFiveStars < 0)
+        {
+            throw new ArgumentException("限定角色的数量和常驻角色的数量必须大于等于0");
+        }
+
+        if (normalFiveStars == 0)
+        {
+            var rateWhenNoNormalFiveStars = (double)limitedFiveStars;
+            var resultWhenNoNormalFiveStars = $"{rateWhenNoNormalFiveStars:F1}:0";
+            return resultWhenNoNormalFiveStars;
+        }
+
+        var rate = (double)limitedFiveStars / normalFiveStars;
+        var result = $"{rate:F2}:1";
+        return result;
+    }
 }
