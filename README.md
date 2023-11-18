@@ -7,23 +7,11 @@
 对于熟悉Github的小伙伴，请自行转到Releases界面下载或**编译**。
 
 ## 编译帮助
-**CoreLibraries**和**NewCoreLibrary**分别为**WPF版本客户端**和**Avalonia跨平台客户端**的核心库，Git仓库当中包含了**sln项目工程文件**，只需在**Visual Studio**或**JetBrains Rider**当中，选择**GUI_WPF**或者**GUI_Avalonia**项目编译即可。
+**NewCoreLibrary**为**Avalonia跨平台客户端**的核心库，Git仓库当中包含了**sln项目工程文件**，只需在**Visual Studio**或**JetBrains Rider**当中，选择**GUI_Avalonia**项目编译即可。
 
 对于使用CLI的小伙伴，还请自行编译。
 
 ## 目前功能及特性
-### WPF版本（稳定版本）
-#### 功能
-* 单卡池抽卡模拟
-* 抽卡欧非计算器
-* 抽卡概率分布图形(**p.d.f.**)生成
-
-#### 支持卡池
-* Up角色池：五星角色
-* Up光锥池：五星光锥
-#### 支持平台
-* Windows 10 1809 32位及以上
-
 ### Avalonia版本（开发中）
 #### 功能
 * - [x] 单卡池抽卡模拟
@@ -41,4 +29,4 @@
 * - [ ] Linux (**无官方测试**)
 * - [ ] MacOS (**无官方测试**)
 
-受限于作者的条件与水平，后续会提供Linux和MacOS版本的安装包，但不会测试是否运行正常。
+受限于作者的条件与水平，后续会提供Linux版本的安装包，但不会测试是否运行正常。
