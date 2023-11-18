@@ -60,5 +60,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void CalculateLuckyValue()
     {
+        
     }
 }
