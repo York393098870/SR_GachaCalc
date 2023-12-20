@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaGUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pages="clr-namespace:AvaloniaGUI.Views.Pages"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="720" Height="405"
+        WindowStartupLocation="CenterScreen"
+        x:Class="AvaloniaGUI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="《崩坏·星穹铁道》全能工具箱">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <TabControl TabStripPlacement="Left">
+        <TabControl.Styles>
+            <Style Selector="TabItem">
+                <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+        </TabControl.Styles>
+        <TabItem Header="首页"></TabItem>
+        <TabItem Header="设置">
+            <pages:Settings></pages:Settings>
+        </TabItem>
+        <TabItem Header="单卡池模拟"></TabItem>
+        <TabItem Header="欧非计算器"></TabItem>
+        <TabItem Header="抽卡规划"></TabItem>
+        <TabItem Header="抽卡图形生成"></TabItem>
+        <TabItem Header="关于">
+            <pages:About/>
+        </TabItem>
+
+    </TabControl>
+
+</Window>

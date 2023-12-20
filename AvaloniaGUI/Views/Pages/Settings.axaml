@@ -1,0 +1,17 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="360"
+             x:Class="AvaloniaGUI.Views.Pages.Settings">
+    <StackPanel>
+        <DockPanel LastChildFill="False" Margin="20,20,20,0">
+            <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">模拟精确度：</TextBlock>
+            <ComboBox DockPanel.Dock="Right" SelectedIndex="1">
+                <ComboBoxItem>低</ComboBoxItem>
+                <ComboBoxItem>中（推荐）</ComboBoxItem>
+                <ComboBoxItem>高（谨慎选择)</ComboBoxItem>
+            </ComboBox>
+        </DockPanel>
+    </StackPanel>
+</UserControl>
