@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 
-             xmlns:viewModels="clr-namespace:AvaloniaGUI.ViewModels"
-             x:DataType="viewModels:MainWindowViewModel"
+             xmlns:others="clr-namespace:AvaloniaGUI.ViewModels.Others"
+
+             x:DataType="others:VmHome"
+
              x:Class="AvaloniaGUI.Views.Pages.Home">
+
     <StackPanel>
         <StackPanel.Styles>
 
@@ -14,10 +17,12 @@
                 <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
             </Style>
         </StackPanel.Styles>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">主要信息：</TextBlock>
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="10">主要信息：</TextBlock>
         <StackPanel Orientation="Horizontal">
-            <TextBlock>当前选择的精确度：</TextBlock>
-            <TextBlock Text="{Binding AccuracyLevelNumber}"></TextBlock>
+            <TextBlock Margin="10,0,0,0">操作系统版本：</TextBlock>
+            <TextBlock Text="{Binding OsVersion}"></TextBlock>
+
         </StackPanel>
     </StackPanel>
 </UserControl>

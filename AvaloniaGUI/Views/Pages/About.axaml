@@ -5,9 +5,10 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 
              xmlns:others="clr-namespace:AvaloniaGUI.ViewModels.Others"
-             x:DataType="others:VM_About"
+             x:DataType="others:VmAbout"
 
              x:Class="AvaloniaGUI.Views.Pages.About">
+
     <StackPanel>
         <StackPanel.Styles>
             <Style Selector="TextBlock">
@@ -17,10 +18,12 @@
                 <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
             </Style>
         </StackPanel.Styles>
-        <TextBlock HorizontalAlignment="Center">关于《崩坏·星穹铁道》全能工具箱</TextBlock>
-        <TextBlock>一个用于计算概率相关的工具箱</TextBlock>
-        <Button>访问开源项目主页</Button>
-        <TextBlock Text="{Binding TempMessage}"></TextBlock>
+        <TextBlock HorizontalAlignment="Center" FontWeight="Bold">关于《崩坏·星穹铁道》全能工具箱</TextBlock>
+
+        <TextBlock Text="{Binding AboutMessage}" TextWrapping="Wrap"></TextBlock>
+
+        <Button Command="{Binding OpenGitHubPageCommand}">访问项目主页</Button>
+        
 
     </StackPanel>
 </UserControl>

@@ -33,7 +33,9 @@
         <TabItem Header="设置">
             <pages:Settings></pages:Settings>
         </TabItem>
-        <TabItem Header="单卡池模拟"></TabItem>
+        <TabItem Header="单卡池模拟">
+            <pages:SinglePoolSimulate></pages:SinglePoolSimulate>
+        </TabItem>
         <TabItem Header="欧非计算器"></TabItem>
         <TabItem Header="抽卡规划"></TabItem>
         <TabItem Header="抽卡图形生成"></TabItem>

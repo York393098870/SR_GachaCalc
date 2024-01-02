@@ -9,5 +9,6 @@ public partial class Home : UserControl
     public Home()
     {
         InitializeComponent();
+        DataContext = new ViewModels.Others.VmHome();
     }
 }
