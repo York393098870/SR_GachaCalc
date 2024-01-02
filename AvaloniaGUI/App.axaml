@@ -15,7 +15,7 @@
 
     <Application.Resources>
 
-        <FontFamily x:Key="OppoFontBold">avares://AvaloniaGUI/Assets#OPlusSans 3.0</FontFamily>
+        <FontFamily x:Key="OppoFont">avares://AvaloniaGUI/Assets#OPlusSans 3.0</FontFamily>
 
     </Application.Resources>
 

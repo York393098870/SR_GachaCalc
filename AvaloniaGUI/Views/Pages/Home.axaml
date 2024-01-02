@@ -1,0 +1,23 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+
+             xmlns:viewModels="clr-namespace:AvaloniaGUI.ViewModels"
+             x:DataType="viewModels:MainWindowViewModel"
+             x:Class="AvaloniaGUI.Views.Pages.Home">
+    <StackPanel>
+        <StackPanel.Styles>
+
+            <Style Selector="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
+            </Style>
+        </StackPanel.Styles>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">主要信息：</TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>当前选择的精确度：</TextBlock>
+            <TextBlock Text="{Binding AccuracyLevelNumber}"></TextBlock>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

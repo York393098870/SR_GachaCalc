@@ -3,14 +3,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+
+             xmlns:others="clr-namespace:AvaloniaGUI.ViewModels.Others"
+             x:DataType="others:VM_About"
+
              x:Class="AvaloniaGUI.Views.Pages.About">
     <StackPanel>
         <StackPanel.Styles>
             <Style Selector="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource OppoFontBold}"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
+            </Style>
+            <Style Selector="Button">
+                <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
             </Style>
         </StackPanel.Styles>
-        <TextBlock>关于《崩坏·星穹铁道》全能工具箱</TextBlock>
-        <TextBlock>一个用于计算概率相关的工具箱。</TextBlock>
+        <TextBlock HorizontalAlignment="Center">关于《崩坏·星穹铁道》全能工具箱</TextBlock>
+        <TextBlock>一个用于计算概率相关的工具箱</TextBlock>
+        <Button>访问开源项目主页</Button>
+        <TextBlock Text="{Binding TempMessage}"></TextBlock>
+
     </StackPanel>
 </UserControl>
