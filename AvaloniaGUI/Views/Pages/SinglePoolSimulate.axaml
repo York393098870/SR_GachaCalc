@@ -24,11 +24,11 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="15,15">
             <TextBlock VerticalAlignment="Center">模拟卡池选择：</TextBlock>
-            <ComboBox SelectedIndex="0">
+            <ComboBox SelectedIndex="{Binding PoolTypeIndex}">
                 <ComboBoxItem>Up角色池</ComboBoxItem>
                 <ComboBoxItem>Up光锥池</ComboBoxItem>
             </ComboBox>
-            
+
             <TextBlock VerticalAlignment="Center" Margin="15,0,0,0">当前计算精确度：</TextBlock>
             <TextBlock VerticalAlignment="Center">暂无</TextBlock>
 
@@ -36,13 +36,15 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="15,15">
             <TextBlock VerticalAlignment="Center">请输入模拟抽卡的次数：</TextBlock>
             <TextBox Text="{Binding SinglePoolSimulateTimes}"></TextBox>
-            <Button Margin="15,0">开始计算！</Button>
+            <Button Command="{Binding SinglePoolSimulateCommand}" Margin="15,0">开始计算！</Button>
         </StackPanel>
 
         <DockPanel>
-            <TextBox TextWrapping="Wrap" Text="{Binding SinglePoolSimulateResult}" MinHeight="200" Margin="45,15"></TextBox>
+            <TextBox TextWrapping="Wrap" Text="{Binding SinglePoolSimulateResult}" IsReadOnly="True" MinHeight="200"
+                     Margin="45,15">
+            </TextBox>
         </DockPanel>
-        
+
 
     </StackPanel>
 

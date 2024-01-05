@@ -6,7 +6,7 @@ public abstract class SinglePool
 //用于模拟单个池子抽奖的类
 {
     private int _totalGachaTimes;
-    private bool _isLastTryFailed; //大保底
+    private bool _isLastTryFailed; //是否存在大保底
 
     public int TotalGachaTimes
     {
