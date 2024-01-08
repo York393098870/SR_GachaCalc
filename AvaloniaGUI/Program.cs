@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.ReactiveUI;
 using System;
+using AvaloniaGUI.Others;
 
 namespace AvaloniaGUI
 {
@@ -19,6 +20,6 @@ namespace AvaloniaGUI
                 .UsePlatformDetect()
                 .WithInterFont()
                 .LogToTrace()
-                .UseReactiveUI();
+                .UseReactiveUI().UseFontFamily();
     }
 }

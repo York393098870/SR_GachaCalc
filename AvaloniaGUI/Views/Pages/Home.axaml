@@ -24,5 +24,8 @@
             <TextBlock Text="{Binding OsVersion}"></TextBlock>
 
         </StackPanel>
+        <TextBlock HorizontalAlignment="Center" FontSize="17" Margin="0,10">测试信息</TextBlock>
+        <Button Command="{Binding UpdateTempInfo}">这是一个测试按钮！</Button>
+        <TextBox MaxWidth="500" TextWrapping="Wrap" Text="{Binding TempInfo}" IsReadOnly="True"></TextBox>
     </StackPanel>
 </UserControl>
