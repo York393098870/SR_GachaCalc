@@ -25,7 +25,7 @@
 #### 多平台支持状况
 从上到下为支持优先级
 * - [x] Windows 10 1809 32位及以上
-* - [x] Linux (仅测试**Ubuntu22.04"")
+* - [x] Linux (仅测试**Ubuntu22.04**)
 * - [ ] Android
 * - [ ] MacOS (**无官方测试**)
 * - [ ] HarmonyOS（暂无支持计划）
