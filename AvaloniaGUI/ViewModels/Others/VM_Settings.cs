@@ -7,6 +7,6 @@ public class VmSettings : ViewModelBase
     public int? AccuracyLevelSelectedIndex
     {
         get => Settings.ShareAccuracyLevelSelectedIndex;
-        set => this.RaiseAndSetIfChanged(ref Settings.ShareAccuracyLevelSelectedIndex, value);
+        set => SetProperty(ref Settings.ShareAccuracyLevelSelectedIndex, value);
     }
 }

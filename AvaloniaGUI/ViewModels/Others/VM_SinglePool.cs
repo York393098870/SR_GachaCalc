@@ -1,5 +1,7 @@
 ﻿using System.Reactive;
+using System.Windows.Input;
 using AvaloniaGUI.Models;
+using CommunityToolkit.Mvvm.Input;
 using MsBox.Avalonia;
 using static AvaloniaGUI.Models.Global.Settings;
 
@@ -12,18 +14,18 @@ public class VmSinglePool : ViewModelBase
     private string _singlePoolSimulateTimes = string.Empty;
     private string _singlePoolSimulateResult = "尚未开始抽卡模拟，待模拟完成后显示结果";
     private string _poolTypeIndex = "0";
-    public ReactiveCommand<Unit, Unit> SinglePoolSimulateCommand { get; }
+    public ICommand SinglePoolSimulateCommand { get; }
 
 
     public VmSinglePool()
     {
-        SinglePoolSimulateCommand = ReactiveCommand.Create(SinglePoolSimulate);
+        SinglePoolSimulateCommand = new RelayCommand(SinglePoolSimulate);
     }
 
     public string PoolTypeIndex
     {
         get => _poolTypeIndex;
-        set => this.RaiseAndSetIfChanged(ref _poolTypeIndex, value);
+        set => this.SetProperty(ref _poolTypeIndex, value);
     }
 
     private Tools.PoolType PoolType
@@ -42,13 +44,13 @@ public class VmSinglePool : ViewModelBase
     public string SinglePoolSimulateTimes
     {
         get => _singlePoolSimulateTimes;
-        set => this.RaiseAndSetIfChanged(ref _singlePoolSimulateTimes, value);
+        set => SetProperty(ref _singlePoolSimulateTimes, value);
     }
 
     public string SinglePoolSimulateResult
     {
         get => _singlePoolSimulateResult;
-        set => this.RaiseAndSetIfChanged(ref _singlePoolSimulateResult, value);
+        set => this.SetProperty(ref _singlePoolSimulateResult, value);
     }
 
     private string ShareAccuracyLevel

@@ -14,18 +14,18 @@ public class VmCostCalculator : ViewModelBase
     public string 角色1命座数
     {
         get => _角色1命座数;
-        set => this.RaiseAndSetIfChanged(ref _角色1命座数, value);
+        set => SetProperty(ref _角色1命座数, value);
     }
 
     public string 专武1叠影数
     {
         get => _专武1叠影数;
-        set => this.RaiseAndSetIfChanged(ref _专武1叠影数, value);
+        set => SetProperty(ref _专武1叠影数, value);
     }
 
     public bool 角色是否为五星
     {
         get => _角色是否为五星;
-        set => this.RaiseAndSetIfChanged(ref _角色是否为五星, value);
+        set => SetProperty(ref _角色是否为五星, value);
     }
 }
