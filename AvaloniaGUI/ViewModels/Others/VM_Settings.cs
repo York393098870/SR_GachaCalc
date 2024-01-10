@@ -1,14 +1,12 @@
-﻿namespace AvaloniaGUI.ViewModels.Others;
+﻿using AvaloniaGUI.Models.Global;
 
-using ReactiveUI;
+namespace AvaloniaGUI.ViewModels.Others;
 
-public class VmSettings: ViewModelBase
+public class VmSettings : ViewModelBase
 {
-    private int? _accuracyLevelSelectedIndex;
-    
     public int? AccuracyLevelSelectedIndex
     {
-        get => _accuracyLevelSelectedIndex;
-        set => this.RaiseAndSetIfChanged(ref _accuracyLevelSelectedIndex, value);
+        get => Settings.ShareAccuracyLevelSelectedIndex;
+        set => this.RaiseAndSetIfChanged(ref Settings.ShareAccuracyLevelSelectedIndex, value);
     }
 }

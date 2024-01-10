@@ -1,7 +1,7 @@
 ﻿using System.Reactive;
 using AvaloniaGUI.Models;
 using MsBox.Avalonia;
-using ReactiveUI;
+using static AvaloniaGUI.Models.Global.Settings;
 
 namespace AvaloniaGUI.ViewModels.Others;
 
@@ -50,6 +50,21 @@ public class VmSinglePool : ViewModelBase
         get => _singlePoolSimulateResult;
         set => this.RaiseAndSetIfChanged(ref _singlePoolSimulateResult, value);
     }
+
+    private string ShareAccuracyLevel
+    {
+        get
+        {
+            return ShareAccuracyLevelSelectedIndex switch
+            {
+                0 => "低精度",
+                1 => "中精度",
+                2 => "高精度",
+                _ => "未知精度"
+            };
+        }
+    }
+
 
     private void SinglePoolSimulate()
     {

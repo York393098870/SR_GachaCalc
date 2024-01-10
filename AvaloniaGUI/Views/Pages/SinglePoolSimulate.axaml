@@ -30,12 +30,12 @@
             </ComboBox>
 
             <TextBlock VerticalAlignment="Center" Margin="15,0,0,0">当前计算精确度：</TextBlock>
-            <TextBlock VerticalAlignment="Center">暂无</TextBlock>
+            <TextBlock VerticalAlignment="Center"></TextBlock>
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="15,15">
             <TextBlock VerticalAlignment="Center">请输入模拟抽卡的次数：</TextBlock>
-            <TextBox Text="{Binding SinglePoolSimulateTimes}"></TextBox>
+            <TextBox Text="{Binding SinglePoolSimulateTimes}" MinWidth="100"></TextBox>
             <Button Command="{Binding SinglePoolSimulateCommand}" Margin="15,0">开始计算！</Button>
         </StackPanel>
 

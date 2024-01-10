@@ -1,6 +1,4 @@
-﻿using ReactiveUI;
-
-namespace AvaloniaGUI.ViewModels;
+﻿namespace AvaloniaGUI.ViewModels;
 
 public partial class MainWindowViewModel
 {

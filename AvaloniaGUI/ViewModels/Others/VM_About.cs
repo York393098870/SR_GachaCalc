@@ -1,5 +1,4 @@
 ﻿using System.Reactive;
-using ReactiveUI;
 
 namespace AvaloniaGUI.ViewModels.Others;
 

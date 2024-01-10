@@ -1,7 +1,5 @@
 ﻿namespace AvaloniaGUI.ViewModels.Others.GachaPlanning;
 
-using ReactiveUI;
-
 public class VmCostCalculator : ViewModelBase
 {
     public string Character1Name { get; set; } = "1号角色";
