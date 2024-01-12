@@ -1,6 +1,6 @@
 ﻿namespace NewCoreLibrary.SinglePool;
 
-using static NewCoreLibrary.GachaData.CalculateGachaProbability;
+using static GachaData.CalculateGachaProbability;
 
 public class LimitedWeaponPool : SinglePool
 {

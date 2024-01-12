@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="360"
 
-             xmlns:viewModels="clr-namespace:AvaloniaGUI.ViewModels"
              x:DataType="others:VmSettings"
              xmlns:others="clr-namespace:AvaloniaGUI.ViewModels.Others"
 

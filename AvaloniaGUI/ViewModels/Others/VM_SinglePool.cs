@@ -1,19 +1,20 @@
-﻿using System.Reactive;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using AvaloniaGUI.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MsBox.Avalonia;
-using static AvaloniaGUI.Models.Global.Settings;
 
 namespace AvaloniaGUI.ViewModels.Others;
 
-public class VmSinglePool : ViewModelBase
+public partial class VmSinglePool : ViewModelBase
 {
-    //单卡池抽卡
+    //单卡池
 
+    [ObservableProperty]
     private string _singlePoolSimulateTimes = string.Empty;
-    private string _singlePoolSimulateResult = "尚未开始抽卡模拟，待模拟完成后显示结果";
-    private string _poolTypeIndex = "0";
+    [ObservableProperty]
+    private string _singlePoolSimulateResult = "尚未开始模拟，待模拟完成后显示结果";
+    [ObservableProperty] private string _poolTypeIndex = "0";
     public ICommand SinglePoolSimulateCommand { get; }
 
 
@@ -22,11 +23,6 @@ public class VmSinglePool : ViewModelBase
         SinglePoolSimulateCommand = new RelayCommand(SinglePoolSimulate);
     }
 
-    public string PoolTypeIndex
-    {
-        get => _poolTypeIndex;
-        set => this.SetProperty(ref _poolTypeIndex, value);
-    }
 
     private Tools.PoolType PoolType
     {
@@ -41,47 +37,13 @@ public class VmSinglePool : ViewModelBase
         }
     }
 
-    public string SinglePoolSimulateTimes
-    {
-        get => _singlePoolSimulateTimes;
-        set => SetProperty(ref _singlePoolSimulateTimes, value);
-    }
-
-    public string SinglePoolSimulateResult
-    {
-        get => _singlePoolSimulateResult;
-        set => this.SetProperty(ref _singlePoolSimulateResult, value);
-    }
-
-    private string ShareAccuracyLevel
-    {
-        get
-        {
-            return ShareAccuracyLevelSelectedIndex switch
-            {
-                0 => "低精度",
-                1 => "中精度",
-                2 => "高精度",
-                _ => "未知精度"
-            };
-        }
-    }
-
 
     private void SinglePoolSimulate()
     {
-        if (int.TryParse(SinglePoolSimulateTimes, out var simulateTimes))
+        if (int.TryParse(SinglePoolSimulateTimes, out var simulateTimes) && simulateTimes >= 1)
         {
-            if (simulateTimes >= 1)
-            {
-                var resultMessage = SinglePoolCalculate.Calculate(PoolType, simulateTimes);
-                SinglePoolSimulateResult = resultMessage;
-            }
-            else
-            {
-                var inputErrorMsgBox = MessageBoxManager.GetMessageBoxStandard("错误", "请输入大于1的整数。");
-                inputErrorMsgBox.ShowAsync();
-            }
+            var resultMessage = SinglePoolCalculate.Calculate(PoolType, simulateTimes);
+            SinglePoolSimulateResult = resultMessage;
         }
         else
         {

@@ -1,12 +1,10 @@
-﻿using AvaloniaGUI.Models.Global;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AvaloniaGUI.ViewModels.Others;
 
-public class VmSettings : ViewModelBase
+public partial class VmSettings : ViewModelBase
 {
-    public int? AccuracyLevelSelectedIndex
-    {
-        get => Settings.ShareAccuracyLevelSelectedIndex;
-        set => SetProperty(ref Settings.ShareAccuracyLevelSelectedIndex, value);
-    }
+    [ObservableProperty]
+    private string _accuracyLevelSelectedIndex = "1";
+    
 }

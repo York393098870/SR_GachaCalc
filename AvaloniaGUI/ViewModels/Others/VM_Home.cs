@@ -5,7 +5,7 @@ namespace AvaloniaGUI.ViewModels.Others;
 
 public class VmHome : ViewModelBase
 {
-    public string OsVersion => Models.Home.OsVersion;
+    public string OsVersion => Home.OsVersion;
 
     private string _tempInfo = "暂无信息";
 
