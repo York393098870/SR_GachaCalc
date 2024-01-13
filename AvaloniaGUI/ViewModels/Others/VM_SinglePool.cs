@@ -1,28 +1,23 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel.DataAnnotations;
 using AvaloniaGUI.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MsBox.Avalonia;
 
 namespace AvaloniaGUI.ViewModels.Others;
 
-public partial class VmSinglePool : ViewModelBase
+[ObservableRecipient]
+public partial class VmSinglePool : ObservableValidator
 {
     //单卡池
 
     [ObservableProperty]
-    private string _singlePoolSimulateTimes = string.Empty;
-    [ObservableProperty]
-    private string _singlePoolSimulateResult = "尚未开始模拟，待模拟完成后显示结果";
+    [Required(ErrorMessage = "模拟次数不允许为空！")]
+    [Range(1, int.MaxValue, ErrorMessage = "请输入大于等于1的整数。")]
+    [NotifyCanExecuteChangedFor(nameof(SinglePoolSimulateCommand))]
+    private string _singlePoolSimulateTimes = "1";
+
+    [ObservableProperty] private string _singlePoolSimulateResult = "尚未开始模拟，待模拟完成后显示结果";
     [ObservableProperty] private string _poolTypeIndex = "0";
-    public ICommand SinglePoolSimulateCommand { get; }
-
-
-    public VmSinglePool()
-    {
-        SinglePoolSimulateCommand = new RelayCommand(SinglePoolSimulate);
-    }
-
 
     private Tools.PoolType PoolType
     {
@@ -37,9 +32,13 @@ public partial class VmSinglePool : ViewModelBase
         }
     }
 
+    public bool CanSimulate => int.TryParse(SinglePoolSimulateTimes, out var intResult) && intResult >= 1; //控制按钮是否可用
 
+    [RelayCommand(CanExecute = nameof(CanSimulate))]
     private void SinglePoolSimulate()
     {
+        ValidateAllProperties();
+
         if (int.TryParse(SinglePoolSimulateTimes, out var simulateTimes) && simulateTimes >= 1)
         {
             var resultMessage = SinglePoolCalculate.Calculate(PoolType, simulateTimes);
@@ -47,8 +46,8 @@ public partial class VmSinglePool : ViewModelBase
         }
         else
         {
-            var inputErrorMsgBox = MessageBoxManager.GetMessageBoxStandard("错误", "请输入大于1的整数。");
-            inputErrorMsgBox.ShowAsync();
+            MessageBox.ShowResultShouldOver1AndInt();
+            SinglePoolSimulateTimes = "1";
         }
     }
 }
