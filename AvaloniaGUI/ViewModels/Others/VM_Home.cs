@@ -1,26 +1,12 @@
 ﻿using AvaloniaGUI.Models;
+using AvaloniaGUI.Models.Global;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 
 namespace AvaloniaGUI.ViewModels.Others;
 
-public class VmHome : ViewModelBase
+public class VmHome : ObservableObject
 {
     public string OsVersion => Home.OsVersion;
-
-    private string _tempInfo = "暂无信息";
-
-    public string TempInfo
-    {
-        get => _tempInfo;
-        set => SetProperty(ref _tempInfo, value);
-    }
-
-    public void UpdateTempInfo()
-    {
-        TeamCostCalculation.Team testTeam = new();
-        var 希儿 = new TeamCostCalculation.CharacterWithWeapon("希儿", true, 0, true, 5);
-        testTeam.AddCharacter(希儿);
-
-        TempInfo = testTeam.PrintTotalCost();
-    }
+    public string AppVersion => Information.AppVersion;
 }

@@ -8,6 +8,5 @@ public partial class SinglePoolSimulate : UserControl
     public SinglePoolSimulate()
     {
         InitializeComponent();
-        DataContext = new VmSinglePool();
     }
 }

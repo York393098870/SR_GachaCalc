@@ -32,7 +32,9 @@ public partial class VmSinglePool : ObservableValidator
         }
     }
 
+
     public bool CanSimulate => int.TryParse(SinglePoolSimulateTimes, out var intResult) && intResult >= 1; //控制按钮是否可用
+
 
     [RelayCommand(CanExecute = nameof(CanSimulate))]
     private void SinglePoolSimulate()

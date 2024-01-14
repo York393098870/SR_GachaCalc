@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
         xmlns:pages="clr-namespace:AvaloniaGUI.Views.Pages"
-        xmlns:gachaPlanning="clr-namespace:AvaloniaGUI.Views.Pages.GachaPlanning"
+        
 
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="800" Height="450"
@@ -39,7 +39,7 @@
         </TabItem>
         <TabItem Header="欧非计算器"></TabItem>
         <TabItem Header="抽卡规划">
-            <gachaPlanning:CostCalculator></gachaPlanning:CostCalculator>
+            
         </TabItem>
         <TabItem Header="抽卡图形生成"></TabItem>
         <TabItem Header="关于">

@@ -8,19 +8,11 @@
              x:DataType="others:VmSinglePool"
 
              x:Class="AvaloniaGUI.Views.Pages.SinglePoolSimulate">
+    <UserControl.DataContext>
+        <others:VmSinglePool IsActive="True" />
+    </UserControl.DataContext>
 
     <StackPanel Orientation="Vertical">
-        <StackPanel.Styles>
-            <Style Selector="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
-            </Style>
-            <Style Selector="Button">
-                <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
-            </Style>
-            <Style Selector="TextBox">
-                <Setter Property="FontFamily" Value="{StaticResource OppoFont}"></Setter>
-            </Style>
-        </StackPanel.Styles>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="15,15">
             <TextBlock VerticalAlignment="Center">模拟卡池选择：</TextBlock>
@@ -29,14 +21,12 @@
                 <ComboBoxItem>Up光锥池</ComboBoxItem>
             </ComboBox>
 
-            <TextBlock VerticalAlignment="Center" Margin="15,0,0,0">当前计算精确度：</TextBlock>
-            <TextBlock VerticalAlignment="Center"></TextBlock>
-
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="15,15">
             <TextBlock VerticalAlignment="Center">请输入模拟抽卡的次数：</TextBlock>
             <TextBox Text="{Binding SinglePoolSimulateTimes}" MaxWidth="150" MinWidth="100"></TextBox>
-            <Button Command="{Binding SinglePoolSimulateCommand}"  Margin="15,0">开始计算！</Button>
+            <Button Command="{Binding SinglePoolSimulateCommand}" Margin="15,0">开始计算！</Button>
+
         </StackPanel>
 
         <DockPanel>
