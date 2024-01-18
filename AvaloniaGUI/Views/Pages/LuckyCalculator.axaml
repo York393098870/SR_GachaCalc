@@ -14,28 +14,36 @@
     <StackPanel Orientation="Vertical">
         <StackPanel.Styles>
             <Style Selector="TextBlock.T1">
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style Selector="StackPanel">
-                <Setter Property="Margin" Value="10,10,0,10"></Setter>
+                <Setter Property="Margin" Value="10,15,0,5" />
+            </Style>
+            <Style Selector="CheckBox">
+                <Setter Property="Margin" Value="20,0,0,0"></Setter>
             </Style>
         </StackPanel.Styles>
         <TextBlock HorizontalAlignment="Center">抽卡幸运度计算：算算你的欧非值</TextBlock>
 
-        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*" RowDefinitions="*,*">
-            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="Up角色池消耗的专票数：" Classes="T1"></TextBlock>
-                <TextBox MinWidth="100" Text="{Binding TimesInLimitedCharacterPool}"></TextBox>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="Up光锥池消耗的专票数：" Classes="T1"></TextBlock>
-                <TextBox MinWidth="100" Text="{Binding TimesInLimitedWeaponPool}"></TextBox>
-            </StackPanel>
-            <Button Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" VerticalAlignment="Center" MinHeight="40" MinWidth="90"
-                    Content="开始计算" Command="{Binding CalculateCommand}">
-            </Button>
-        </Grid>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="获取的Up角色数量：" Classes="T1" />
+            <TextBox MinWidth="100" Text="{Binding NumbersOfCharacters}" />
+            <CheckBox Content="大保底" IsChecked="{Binding IsLastLimitedCharacterFailed}"></CheckBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="获取的Up光锥数量：" Classes="T1" />
+            <TextBox MinWidth="100" Text="{Binding NumbersOfWeapons}" />
+            <CheckBox Content="大保底" IsChecked="{Binding IsLastLimitedWeaponFailed}"></CheckBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="总计消耗的抽数：" Classes="T1" />
+            <TextBox MinWidth="100" Margin="18,0,0,0" Text="{Binding NumbersOfTotalGachaTimes}" />
+        </StackPanel>
+        <Button VerticalAlignment="Center" MinHeight="40"
+                MinWidth="90"
+                Content="开始计算" Margin="0,10,0,0" Command="{Binding CalculateCommand}" Width="100" />
 
+        <TextBox Text="{Binding Result}" Width="150" Height="150" TextWrapping="Wrap"></TextBox>
     </StackPanel>
 
 </UserControl>

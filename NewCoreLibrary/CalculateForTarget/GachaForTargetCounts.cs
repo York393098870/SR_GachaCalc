@@ -2,36 +2,31 @@
 
 namespace NewCoreLibrary.CalculateForTarget;
 
-public class GachaForTargetCounts
+public class GachaForTargetCounts(
+    int targetAmountOfLimitedCharacter,
+    int targetAmountOfLimitedWeapon,
+    int alreadyGachaTimes = 0,
+    bool isLastCharacterFailed = false,
+    bool isLastWeaponFailed = false) //使用主构造函数
+
 {
-    private int TargetAmountOfLimitedCharacter { get; }
-    private int TargetAmountOfLimitedWeapon { get; }
-    private int AlreadyGachaTimes { get; }
-    private bool IsLastCharacterFailed { get; }
-    private bool IsLastWeaponFailed { get; }
+    private int TargetAmountOfLimitedCharacter { get; } = targetAmountOfLimitedCharacter;
+    private int TargetAmountOfLimitedWeapon { get; } = targetAmountOfLimitedWeapon;
+    private int AlreadyGachaTimes { get; } = alreadyGachaTimes;
+    private bool IsLastCharacterFailed { get; } = isLastCharacterFailed;
+    private bool IsLastWeaponFailed { get; } = isLastWeaponFailed;
 
 
-    public GachaForTargetCounts(int targetAmountOfLimitedCharacter, int targetAmountOfLimitedWeapon,
-        int alreadyGachaTimes = 0, bool isLastCharacterFailed = false, bool isLastWeaponFailed = false)
+    public (int AmountOfTotal, int AmountOfNormalCharacters, int AmountOfNormalWeapons, int AmountOfGachaInCharacterPool, int AmountOfGachaInWeaponPool) Calculate()
     {
-        TargetAmountOfLimitedCharacter = targetAmountOfLimitedCharacter;
-        TargetAmountOfLimitedWeapon = targetAmountOfLimitedWeapon;
-        AlreadyGachaTimes = alreadyGachaTimes;
-        IsLastCharacterFailed = isLastCharacterFailed;
-        IsLastWeaponFailed = isLastWeaponFailed;
-    }
-
-    public (int AmountOfTotal, int AmountOfNormalCharacter, int AmountOfNormalWeapon, int AmountOfGachaInCharacterPool,
-        int AmountOfGachaInWeaponPool) Calculate()
-    {
-        //限定角色池
+        //Up角色池
         var (amountOfNormalCharacter, amountOfGachaInCharacterPool) = Target.Calculate(
             targetAmount: TargetAmountOfLimitedCharacter,
             thingName: "LimitedCharacter",
             probabilityWhenSucceed: GachaData.CalculateGachaProbability.ProbabilityForLimitedCharacterWhenSucceed,
             alreadyGachaTimes: AlreadyGachaTimes, lastTryFailed: IsLastCharacterFailed);
 
-        //限定武器池
+        //Up光锥池
         var (amountOfNormalWeapon, amountOfGachaInWeaponPool) = Target.Calculate(
             targetAmount: TargetAmountOfLimitedWeapon,
             thingName: "LimitedWeapon",
@@ -39,8 +34,8 @@ public class GachaForTargetCounts
             alreadyGachaTimes: AlreadyGachaTimes, lastTryFailed: IsLastWeaponFailed);
 
         var amountOfTotal = amountOfGachaInCharacterPool + amountOfGachaInWeaponPool;
-        return (AmountOfTotal: amountOfTotal, AmountOfNormalCharacter: amountOfNormalCharacter,
-            AmountOfNormalWeapon: amountOfNormalWeapon, AmountOfGachaInCharacterPool: amountOfGachaInCharacterPool,
+        return (AmountOfTotal: amountOfTotal, AmountOfNormalCharacters: amountOfNormalCharacter,
+            AmountOfNormalWeapons: amountOfNormalWeapon, AmountOfGachaInCharacterPool: amountOfGachaInCharacterPool,
             AmountOfGachaInWeaponPool: amountOfGachaInWeaponPool);
     }
 }

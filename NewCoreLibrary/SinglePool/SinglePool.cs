@@ -5,21 +5,9 @@ using static Tools;
 public abstract class SinglePool
 //用于模拟单个池子抽奖的类
 {
-    private int _totalGachaTimes;
-    private bool _isLastTryFailed; //是否存在大保底
+    private int TotalGachaTimes { get; set; }
 
-    public int TotalGachaTimes
-    {
-        get => _totalGachaTimes;
-
-        protected set => _totalGachaTimes = value;
-    }
-
-    public bool IsLastTryFailed
-    {
-        get => _isLastTryFailed;
-        protected set => _isLastTryFailed = value;
-    }
+    private bool IsLastTryFailed { get; set; }
 
     protected SinglePool(int totalGachaTimes, bool isLastTryFailed = false)
     {
@@ -28,8 +16,8 @@ public abstract class SinglePool
             throw new ArgumentOutOfRangeException(nameof(totalGachaTimes), "总抽卡次数不允许小于1");
         }
 
-        _totalGachaTimes = totalGachaTimes;
-        _isLastTryFailed = isLastTryFailed;
+        TotalGachaTimes = totalGachaTimes;
+        IsLastTryFailed = isLastTryFailed;
     }
 
     protected virtual double GetProbability(int i)
@@ -50,7 +38,7 @@ public abstract class SinglePool
         var n = 1;
 
         for (var i = 1;
-             i <= _totalGachaTimes;
+             i <= TotalGachaTimes;
              i++)
         {
             //判断单次抽卡是否成功
@@ -58,10 +46,10 @@ public abstract class SinglePool
             {
                 //出金时的逻辑
                 //判断保底，有保底则直接获得
-                if (_isLastTryFailed)
+                if (IsLastTryFailed)
                 {
                     limitedFiveStarCount++;
-                    _isLastTryFailed = false; //清空已有的大保底
+                    IsLastTryFailed = false; //清空已有的大保底
                     n = 1; //重置循环
                 }
                 else
@@ -77,7 +65,7 @@ public abstract class SinglePool
                     {
                         //歪常驻
                         normalFiveStarCount++;
-                        _isLastTryFailed = true; //增加大保底
+                        IsLastTryFailed = true; //增加大保底
                         n = 1; //重置循环
                     }
                 }

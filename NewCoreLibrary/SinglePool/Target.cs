@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace NewCoreLibrary.SinglePool;
+﻿namespace NewCoreLibrary.SinglePool;
 
 public static class Target
 {
