@@ -37,7 +37,9 @@
         <TabItem Header="抽卡模拟器">
             <pages:SinglePoolSimulate></pages:SinglePoolSimulate>
         </TabItem>
-        <TabItem Header="欧非计算器"></TabItem>
+        <TabItem Header="欧非计算器">
+            <pages:LuckyCalculator></pages:LuckyCalculator>
+        </TabItem>
         <TabItem Header="抽卡规划">
             
         </TabItem>

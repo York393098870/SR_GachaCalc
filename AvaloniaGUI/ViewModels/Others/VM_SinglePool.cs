@@ -19,18 +19,13 @@ public partial class VmSinglePool : ObservableValidator
     [ObservableProperty] private string _singlePoolSimulateResult = "尚未开始模拟，待模拟完成后显示结果";
     [ObservableProperty] private string _poolTypeIndex = "0";
 
-    private Tools.PoolType PoolType
-    {
-        get
+    private Tools.PoolType PoolType =>
+        PoolTypeIndex switch
         {
-            return PoolTypeIndex switch
-            {
-                "0" => Tools.PoolType.LimitedCharacterPool,
-                "1" => Tools.PoolType.LimitedWeaponPool,
-                _ => Tools.PoolType.UnknownPoolType
-            };
-        }
-    }
+            "0" => Tools.PoolType.LimitedCharacterPool,
+            "1" => Tools.PoolType.LimitedWeaponPool,
+            _ => Tools.PoolType.UnknownPoolType
+        };
 
 
     public bool CanSimulate => int.TryParse(SinglePoolSimulateTimes, out var intResult) && intResult >= 1; //控制按钮是否可用

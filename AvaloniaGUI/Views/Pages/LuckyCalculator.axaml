@@ -2,7 +2,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaGUI.Views.Pages.LuckyCalculator">
-    Welcome to Avalonia!
+             xmlns:others="clr-namespace:AvaloniaGUI.ViewModels.Others"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+             x:Class="AvaloniaGUI.Views.Pages.LuckyCalculator"
+             x:DataType="others:VmLuckyCalculator">
+
+    <UserControl.DataContext>
+        <others:VmLuckyCalculator IsActive="True" />
+    </UserControl.DataContext>
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel.Styles>
+            <Style Selector="TextBlock.T1">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            </Style>
+            <Style Selector="StackPanel">
+                <Setter Property="Margin" Value="10,10,0,10"></Setter>
+            </Style>
+        </StackPanel.Styles>
+        <TextBlock HorizontalAlignment="Center">抽卡幸运度计算：算算你的欧非值</TextBlock>
+
+        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*" RowDefinitions="*,*">
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="Up角色池消耗的专票数：" Classes="T1"></TextBlock>
+                <TextBox MinWidth="100" Text="{Binding TimesInLimitedCharacterPool}"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="Up光锥池消耗的专票数：" Classes="T1"></TextBlock>
+                <TextBox MinWidth="100" Text="{Binding TimesInLimitedWeaponPool}"></TextBox>
+            </StackPanel>
+            <Button Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" VerticalAlignment="Center" MinHeight="40" MinWidth="90"
+                    Content="开始计算" Command="{Binding CalculateCommand}">
+            </Button>
+        </Grid>
+
+    </StackPanel>
+
 </UserControl>
