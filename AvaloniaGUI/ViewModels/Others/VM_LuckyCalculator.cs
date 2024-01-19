@@ -31,8 +31,8 @@ public partial class VmLuckyCalculator : ObservableValidator
 
     private bool CanCalculate() => int.TryParse(NumbersOfCharacters, out var characterTimes) &&
                                    int.TryParse(NumbersOfWeapons, out var weaponTimes) &&
-                                   int.TryParse(NumbersOfTotalGachaTimes, out var totalTimes) && characterTimes >= 1 &&
-                                   weaponTimes >= 1 &&
+                                   int.TryParse(NumbersOfTotalGachaTimes, out var totalTimes) && characterTimes >= 0 &&
+                                   weaponTimes >= 0 && (characterTimes + weaponTimes >= 1) &&
                                    totalTimes >= characterTimes + weaponTimes;
 
     [RelayCommand(CanExecute = nameof(CanCalculate))]
