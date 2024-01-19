@@ -29,11 +29,12 @@
 
         </StackPanel>
 
-        <DockPanel>
-            <TextBox TextWrapping="Wrap" Text="{Binding SinglePoolSimulateResult}" IsReadOnly="True" MinHeight="200"
-                     Margin="45,15">
-            </TextBox>
-        </DockPanel>
+
+        <TextBox TextWrapping="Wrap" Text="{Binding SinglePoolSimulateResult}" IsReadOnly="True" MinHeight="200"
+                 Margin="45,15">
+        </TextBox>
+
+        <TextBlock Text="{Binding AverageMessages}" HorizontalAlignment="Center"></TextBlock>
 
 
     </StackPanel>

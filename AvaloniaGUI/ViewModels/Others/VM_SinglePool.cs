@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using AvaloniaGUI.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -18,6 +19,7 @@ public partial class VmSinglePool : ObservableValidator
 
     [ObservableProperty] private string _singlePoolSimulateResult = "尚未开始模拟，待模拟完成后显示结果";
     [ObservableProperty] private string _poolTypeIndex = "0";
+    public string AverageMessages => "根据相关数据，Up角色抽取期望为：93.446抽，Up光锥抽取期望为：66.84抽。";
 
     private Tools.PoolType PoolType =>
         PoolTypeIndex switch
@@ -32,13 +34,13 @@ public partial class VmSinglePool : ObservableValidator
 
 
     [RelayCommand(CanExecute = nameof(CanSimulate))]
-    private void SinglePoolSimulate()
+    private async Task SinglePoolSimulateAsync()
     {
         ValidateAllProperties();
 
         if (int.TryParse(SinglePoolSimulateTimes, out var simulateTimes) && simulateTimes >= 1)
         {
-            var resultMessage = SinglePoolCalculate.Calculate(PoolType, simulateTimes);
+            var resultMessage = await Task.Run(() => SinglePoolCalculate.Calculate(PoolType, simulateTimes));
             SinglePoolSimulateResult = resultMessage;
         }
         else

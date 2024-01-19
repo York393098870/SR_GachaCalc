@@ -18,14 +18,14 @@ public class SinglePoolCalculate
                 var ratioOfCharacters =
                     RatioCalculate(resultOfLimitedCharacterPool.Item1, resultOfLimitedCharacterPool.Item2);
                 return
-                    $"模拟Up角色池抽卡{totalGachaTimes}次的情况：\n获得限定五星角色{resultOfLimitedCharacterPool.Item1}个，\n常驻五星角色{resultOfLimitedCharacterPool.Item2}个，\n平均每{timesPerLimitedFiveStarCharacter:F1}抽获得一个限定五星角色，限定：常驻比例：{ratioOfCharacters}";
+                    $"模拟Up角色池抽卡{totalGachaTimes}次的情况：\n获得限定五星角色{resultOfLimitedCharacterPool.Item1}个，\n常驻五星角色{resultOfLimitedCharacterPool.Item2}个，\n平均每{timesPerLimitedFiveStarCharacter:F2}抽获得一个限定五星角色，限定：常驻比例：{ratioOfCharacters}";
             case PoolType.LimitedWeaponPool:
                 var limitedWeaponPool = new LimitedWeaponPool(totalGachaTimes, isLastTryFailed);
                 var resultOfLimitedWeaponPool = limitedWeaponPool.CalculateByGachaTimes();
                 var timesPerLimitedFiveStarWeapon = totalGachaTimes / (double)resultOfLimitedWeaponPool.Item1;
                 var ratioOfWeapons = RatioCalculate(resultOfLimitedWeaponPool.Item1, resultOfLimitedWeaponPool.Item2);
                 return
-                    $"模拟Up光锥池抽卡{totalGachaTimes}次的情况，\n获得限定五星光锥{resultOfLimitedWeaponPool.Item1}把，\n常驻五星光锥{resultOfLimitedWeaponPool.Item2}把，\n平均每{timesPerLimitedFiveStarWeapon:F1}抽获得一把限定五星光锥，限定：常驻比例：{ratioOfWeapons}";
+                    $"模拟Up光锥池抽卡{totalGachaTimes}次的情况，\n获得限定五星光锥{resultOfLimitedWeaponPool.Item1}把，\n常驻五星光锥{resultOfLimitedWeaponPool.Item2}把，\n平均每{timesPerLimitedFiveStarWeapon:F2}抽获得一把限定五星光锥，限定：常驻比例：{ratioOfWeapons}";
             case PoolType.UnknownPoolType:
                 throw new ArgumentException("未知的池子类型");
             default:

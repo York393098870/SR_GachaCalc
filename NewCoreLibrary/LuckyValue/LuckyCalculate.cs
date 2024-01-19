@@ -32,7 +32,7 @@ public class LuckyCalculate
         simulateResult.Sort();
 
         var index = simulateResult.IndexOf(gachaTimes);
-        var percentAgeRank = (double)index / simulateResult.Count;
+        var percentAgeRank = (double)index / simulateResult.Count; //Todo:这里的计算可能有问题，需要检查
         return percentAgeRank;
     }
 }

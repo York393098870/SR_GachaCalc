@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using AvaloniaGUI.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -35,17 +36,17 @@ public partial class VmLuckyCalculator : ObservableValidator
                                    totalTimes >= characterTimes + weaponTimes;
 
     [RelayCommand(CanExecute = nameof(CanCalculate))]
-    private void Calculate()
+    private async Task CalculateAsync()
     {
         ValidateAllProperties();
         if (HasErrors) return;
         var calculator = new LuckyCalculate();
-        var result = calculator.Calculate(
+        var result = await Task.Run(() => calculator.Calculate(
             targetAmountOfLimitedCharacters: int.Parse(NumbersOfCharacters),
             lastCharacterNormal: IsLastLimitedCharacterFailed,
             targetAmountOfLimitedWeapons: int.Parse(NumbersOfWeapons),
             lastWeaponNormal: IsLastLimitedWeaponFailed,
-            gachaTimes: int.Parse(NumbersOfTotalGachaTimes));
+            gachaTimes: int.Parse(NumbersOfTotalGachaTimes)));
         Result =
             $"模拟抽取{NumbersOfCharacters}只Up角色和{NumbersOfWeapons}把Up光锥的情况：\n你花费了总计{NumbersOfTotalGachaTimes}抽，根据模拟计算结果，\n你的欧非百分比为（百分比越低运气越好）为：{result * 100:F2}%，超越了{(1 - result) * 100:F2}%的玩家。";
     }

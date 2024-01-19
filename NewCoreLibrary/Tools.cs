@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace NewCoreLibrary;
+﻿namespace NewCoreLibrary;
 
 public class Tools
 {
