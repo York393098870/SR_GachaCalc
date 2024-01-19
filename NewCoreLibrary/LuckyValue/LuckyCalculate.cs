@@ -30,9 +30,10 @@ public class LuckyCalculate
 
         simulateResult.Add(gachaTimes);
         simulateResult.Sort();
+        Console.WriteLine($"日志：循环平均数：{simulateResult.Average()}");
 
         var index = simulateResult.IndexOf(gachaTimes);
-        var percentAgeRank = (double)index / simulateResult.Count; //Todo:这里的计算可能有问题，需要检查
+        var percentAgeRank = (double)index / simulateResult.Count;
         return percentAgeRank;
     }
 }
