@@ -43,7 +43,7 @@
                 MinWidth="90"
                 Content="开始计算" Margin="0,10,0,0" Command="{Binding CalculateCommand}" Width="100" />
 
-        <TextBox Text="{Binding Result}" Width="150" Height="150" TextWrapping="Wrap"></TextBox>
+        <TextBox Text="{Binding Result}" Width="550" Height="150" TextWrapping="Wrap" Margin="0,15,0,0"></TextBox>
     </StackPanel>
 
 </UserControl>

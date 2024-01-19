@@ -2,6 +2,7 @@
 using AvaloniaGUI.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using NewCoreLibrary.LuckyValue;
 
 namespace AvaloniaGUI.ViewModels.Others;
 
@@ -37,9 +38,15 @@ public partial class VmLuckyCalculator : ObservableValidator
     private void Calculate()
     {
         ValidateAllProperties();
-        if (!HasErrors)
-        {
-            //Todo: Calculate
-        }
+        if (HasErrors) return;
+        var calculator = new LuckyCalculate();
+        var result = calculator.Calculate(
+            targetAmountOfLimitedCharacters: int.Parse(NumbersOfCharacters),
+            lastCharacterNormal: IsLastLimitedCharacterFailed,
+            targetAmountOfLimitedWeapons: int.Parse(NumbersOfWeapons),
+            lastWeaponNormal: IsLastLimitedWeaponFailed,
+            gachaTimes: int.Parse(NumbersOfTotalGachaTimes));
+        Result =
+            $"模拟抽取{NumbersOfCharacters}只Up角色和{NumbersOfWeapons}把Up光锥的情况：\n你花费了总计{NumbersOfTotalGachaTimes}抽，根据模拟计算结果，\n你的欧非百分比为（百分比越低运气越好）为：{result * 100:F2}%，超越了{(1 - result) * 100:F2}%的玩家。";
     }
 }
